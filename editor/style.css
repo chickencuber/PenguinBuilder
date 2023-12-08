@@ -5,10 +5,6 @@ html, body {
   background: #00c3ff;
 }
 
-canvas {
-  display:none;
-}
-
 #block-editor {
   position: absolute;
   width: 100vw;
