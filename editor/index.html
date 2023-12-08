@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>PenguinBuilder</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <iframe id="window" class="hide" src="https://editor.p5js.org/chicken_cuber/full/bzsWsaQHS"></iframe>
-        <script src="addFrame.js"></script>
-    </body>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+
+    <script src="https://www.unpkg.com/@blockly/disable-top-blocks@0.4.7/dist/index.js"></script>
+
+    <script src="https://www.unpkg.com/@blockly/continuous-toolbox@5.0.8/dist/index.js"></script>
+
+    <script src="https://unpkg.com/@blockly/toolbox-search@1.2.3/dist/index.js"></script>
+
+    <script src="https://www.unpkg.com/@blockly/plugin-workspace-search@8.1.0/dist/index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <main>
+      <div id="block-editor"></div>
+
+      <a
+        href="https://discord.gg/b8zHUQ4Cqn"
+        target="_blank"
+        id="discord_link"
+      ></a>
+      <button id="discord_button" onclick="loadPage(`discord_link`)">
+        Discord
+      </button>
+
+      <button id="Export">Export</button>
+      <button id="Save">Save</button>
+      <input type="file" id="fileInput" style="display: none;" />
+      <button id="Load">Load</button>
+      <input
+        type="text"
+        id="ExtensionName"
+        placeholder="ExtensionName"
+        maxlength="20"
+      />
+      <input
+        class="no"
+        type="text"
+        id="ExtensionID"
+        placeholder="ExtensionID"
+        maxlength="20"
+      />
+      <input type="color" id="Color" value="#0088ff" />
+      <label
+        >Force Unsandboxed <input type="checkbox" id="force-unsandboxed"
+      /></label>
+    </main>
+
+    <script src="block/block.js"></script>
+    <script src="block/input.js"></script>
+    <script src="block/getInput.js"></script>
+    <script src="block/return.js"></script>
+    <script src="block/menu.js"></script>
+    <script src="block/menu_item.js"></script>
+
+    <script src="utils.js"></script>
+
+    <script src="eval.js"></script>
+
+    <script src="JSON/parse.js"></script>
+    <script src="JSON/stringify.js"></script>
+    <script src="JSON/create.js"></script>
+    <script src="JSON/get.js"></script>
+    <script src="JSON/set.js"></script>
+    <script src="JSON/from.js"></script>
+    <script src="JSON/utils.js"></script>
+
+    <script src="variables.js"></script>
+
+    <script src="comments.js"></script>
+
+    <script src="varFix.js"></script>
+
+    <script src="pages.js"></script>
+    <script src="sketch.js"></script>
+  </body>
 </html>
