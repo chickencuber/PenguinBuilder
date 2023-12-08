@@ -1,4 +1,4 @@
-const version = "2.5";
+const version = "2.6";
 
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
@@ -33,12 +33,12 @@ function getID() {
   if (color1 === "") {
     color1 = "#0088ff";
   }
-  
+
   forceUnsandboxed = $("#force-unsandboxed")[0].checked;
   if (forceUnsandboxed === "") {
     forceUnsandboxed = false;
   }
-  
+
 }
 
 const todo = [];
@@ -242,7 +242,7 @@ $("#Export").on("click", () => {
     download(
       `
 // Made with PenguinBuilder ${version}
-// use PenguinBuilder at "https://editor.p5js.org/chicken_cuber/full/bzsWsaQHS"
+// use PenguinBuilder at "https://chickencuber.github.io/PenguinBuilder/"
 (function(Scratch) {
   const blocks = [];
   const vars = {};
@@ -319,7 +319,7 @@ function loadProject(file) {
       $("#ExtensionName")[0].value =
         blocks.name === "ExtensionName" ? "" : blocks.name;
       $("#Color")[0].value = blocks.color1;
-      
+
       $("#force-unsandboxed")[0].checked = blocks.forceUnsandboxed;
 
       getID();
