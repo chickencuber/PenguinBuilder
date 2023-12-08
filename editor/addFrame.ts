@@ -1,3 +1,3 @@
 const iframe: HTMLIFrameElement = document.getElementById("window") as HTMLIFrameElement;
 
-console.dir(iframe.contentWindow!.location.href)
+console.dir(iframe.contentWindow!.location.href);
