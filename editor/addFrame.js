@@ -1,3 +1,3 @@
 "use strict";
 const iframe = document.getElementById("window");
-console.dir(iframe.contentDocument);
+console.dir(iframe.contentWindow.location.href);
