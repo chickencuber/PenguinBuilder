@@ -19,22 +19,22 @@ let forceUnsandboxed = false;
 })(document.querySelectorAll("input.no"));
 
 function getID() {
-  Extension_id = $("#ExtensionID")[0].value;
+  Extension_id = $("#ExtensionID").value();
   if (Extension_id === "") {
     Extension_id = "ExtensionID";
   }
 
-  name = $("#ExtensionName")[0].value;
+  name = $("#ExtensionName").value();
   if (name === "") {
     name = "ExtensionName";
   }
 
-  color1 = $("#Color")[0].value;
+  color1 = $("#Color").value();
   if (color1 === "") {
     color1 = "#0088ff";
   }
 
-  forceUnsandboxed = $("#force-unsandboxed")[0].checked;
+  forceUnsandboxed = $("#force-unsandboxed").checked();
   if (forceUnsandboxed === "") {
     forceUnsandboxed = false;
   }
@@ -232,7 +232,7 @@ const workspaceSearch = new WorkspaceSearch(workspace);
 
 workspaceSearch.init();
 
-$("#Export").on("click", () => {
+$("#Export").click(() => {
   end = "";
   menus = 0;
   getID();
@@ -314,13 +314,11 @@ function loadProject(file) {
       const content = e.target.result;
       const blocks = JSON.parse(content);
 
-      $("#ExtensionID")[0].value =
-        blocks.Extension_id === "ExtensionID" ? "" : blocks.Extension_id;
-      $("#ExtensionName")[0].value =
-        blocks.name === "ExtensionName" ? "" : blocks.name;
-      $("#Color")[0].value = blocks.color1;
+      $("#ExtensionID").elt.value = blocks.Extension_id === "ExtensionID" ? "" : blocks.Extension_id;
+      $("#ExtensionName").elt.value = blocks.name === "ExtensionName" ? "" : blocks.name;
+      $("#Color").value(blocks.color1);
 
-      $("#force-unsandboxed")[0].checked = blocks.forceUnsandboxed;
+      $("#force-unsandboxed").elt.checked = blocks.forceUnsandboxed;
 
       getID();
 
@@ -334,14 +332,14 @@ ${er}`);
   reader.readAsText(file);
 }
 
-$("#Save").on("click", () => {
+$("#Save").click( () => {
   getID();
   saveProject(Extension_id);
 });
 
-$("#Load").on("click", () => {
+$("#Load").click(() => {
   getID();
-  $("#fileInput")[0].click();
+  $("#fileInput").click();
 });
 
 $("#fileInput").on("change", () => {
