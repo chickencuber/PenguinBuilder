@@ -10,7 +10,7 @@ let forceUnsandboxed = false;
     inp.addEventListener("keydown", function () {
       const self = this;
       setTimeout(function () {
-        for(let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
           self.value = self.value.toLowerCase().replace(/[^a-z0-9]/g, "");
         }
       }, 0.1);
@@ -75,6 +75,8 @@ const toolbox = {
         block("menu_item"),
         block("get_input"),
         block("return_block"),
+        block("create_hat"),
+        block("call_hat"),
       ],
     },
     {
@@ -248,7 +250,7 @@ $("#Export").click(() => {
   const vars = {};
   const menus = {};
 
-  ${forceUnsandboxed? `if (!Scratch.extensions.unsandboxed) {
+  ${forceUnsandboxed ? `if (!Scratch.extensions.unsandboxed) {
     throw new Error('${name} must run unsandboxed');
   }`: ""}
 
@@ -264,8 +266,8 @@ $("#Export").click(() => {
     }
   }
   \n` +
-        getCode() +
-        `\n
+      getCode() +
+      `\n
 ${end}
   Scratch.extensions.register(new Extension());
 })(Scratch);
@@ -332,7 +334,7 @@ ${er}`);
   reader.readAsText(file);
 }
 
-$("#Save").click( () => {
+$("#Save").click(() => {
   getID();
   saveProject(Extension_id);
 });
