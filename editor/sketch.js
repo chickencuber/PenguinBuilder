@@ -1,4 +1,4 @@
-const version = "2.7";
+const version = "2.8";
 
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
@@ -216,12 +216,15 @@ addFromPrefix("logic_", "logic", "#002CB9", []);
 
 addCategory("colour", "#FFF800", "color");
 
+Blockly.Themes.Classic.startHats = true;
+
 const workspace = Blockly.inject("block-editor", {
   plugins: {
     toolbox: ContinuousToolbox,
     flyoutsVerticalToolbox: ContinuousFlyout,
     metricsManager: ContinuousMetrics,
   },
+  renderer: "zelos",
   toolbox,
 });
 
