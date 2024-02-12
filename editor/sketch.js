@@ -1,4 +1,4 @@
-const version = "2.6";
+const version = "2.7";
 
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
