@@ -5,6 +5,13 @@ let name = "ExtensionName";
 let color1 = "#0088ff";
 let forceUnsandboxed = false;
 
+function getTopBlocks(block) {
+  if(block.parentBlock_ === null) {
+    return block;
+  }
+  return getTopBlocks(block.parentBlock_);
+}
+
 ((inputs) => {
   for (const inp of inputs) {
     inp.addEventListener("keydown", function () {
@@ -77,6 +84,7 @@ const toolbox = {
         block("return_block"),
         block("create_hat"),
         block("call_hat"),
+        block("call_hat_with_args"),
       ],
     },
     {
@@ -227,6 +235,8 @@ const workspace = Blockly.inject("block-editor", {
   renderer: "zelos",
   toolbox,
 });
+
+workspace.scale = 0.7;
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 

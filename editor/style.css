@@ -16,13 +16,6 @@ html, body {
   width: 100px;
 }
 
-.blocklyFlyout {
-  width: 250px;
-}
-
-.blocklyFlyoutScrollbar {
-  display: none;
-}
 
 button {
   color: white;
