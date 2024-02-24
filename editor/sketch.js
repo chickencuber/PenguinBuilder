@@ -1,4 +1,4 @@
-const version = "2.8";
+const version = "2.9";
 
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
@@ -6,7 +6,7 @@ let color1 = "#0088ff";
 let forceUnsandboxed = false;
 
 function getTopBlocks(block) {
-  if(block.parentBlock_ === null) {
+  if (block.parentBlock_ === null) {
     return block;
   }
   return getTopBlocks(block.parentBlock_);
@@ -59,6 +59,23 @@ function block(name) {
     type: name,
     gap: 8,
   };
+}
+
+function button(name, callbackID) {
+  return {
+    kind: "button",
+    text: name,
+    callbackKey: callbackID
+  };
+}
+
+function category(name, color, contents) {
+  return {
+    kind: "category",
+    name,
+    colour: color,
+    contents
+  }
 }
 
 const toolbox = {
@@ -224,6 +241,10 @@ addFromPrefix("logic_", "logic", "#002CB9", []);
 
 addCategory("colour", "#FFF800", "color");
 
+toolbox.contents.push(category("Extensions", "#555", [
+  button("Load Extension", "Load_Extension"),
+]));
+
 Blockly.Themes.Classic.startHats = true;
 
 const workspace = Blockly.inject("block-editor", {
@@ -239,6 +260,10 @@ const workspace = Blockly.inject("block-editor", {
 workspace.scale = 0.7;
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
+
+workspace.registerButtonCallback("Load_Extension", () => {
+  window.open("./extensionSelection", "", "popup");
+});
 
 const disableTopBlocksPlugin = new DisableTopBlocks();
 disableTopBlocksPlugin.init();
@@ -321,6 +346,23 @@ function saveProject(saveName) {
   );
 }
 
+function loadExtension(file) {
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    try {
+      const content = e.target.result;
+      (new Function(content))();
+    } catch (er) {
+      alert(`An unexpected error occured:
+${er}`);
+    }
+  };
+  reader.readAsText(file);
+}
+
+
+
 function loadProject(file) {
   const reader = new FileReader();
 
@@ -357,7 +399,7 @@ $("#Load").click(() => {
   $("#fileInput").click();
 });
 
-$("#fileInput").on("change", () => {
+$("#fileInput").on("change", (event) => {
   const fileInput = event.target;
   const selectedFile = fileInput.files[0];
 
