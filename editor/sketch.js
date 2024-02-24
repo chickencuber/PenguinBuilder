@@ -262,7 +262,7 @@ workspace.scale = 0.7;
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
 workspace.registerButtonCallback("Load_Extension", () => {
-  window.open("./extensionSelection", "", "popup");
+  window.open("./extensionGallery", "", "popup");
 });
 
 const disableTopBlocksPlugin = new DisableTopBlocks();
