@@ -18,6 +18,12 @@ const data = {};
             }
             return obj;
         })(await (await fetch(ext.url)).json());
-        console.log(contents);
+        const image = contents["image.png"]? await (await fetch(contents["image.png"].download_url)).blob(): await (await fetch("./default.png")).blob();
+        data[ext.name] = {
+            image,
+            options: await (await fetch(contents["options.json"].download_url)).json(),
+            javascript: await (await fetch(contents["index.js"].download_url)).text(),
+        }
+        console.log(data);
     }
 })()
