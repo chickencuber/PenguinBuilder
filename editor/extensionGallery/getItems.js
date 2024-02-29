@@ -9,10 +9,10 @@
     });
     for(const ext of val) {
         //gets const contents of the directory as an object
-        const contents = ((v) => {
+        const contents = await (async (v) => {
             const obj = {};
             for(const file of v) {
-                obj[file.name] = file;
+                obj[file.name] = await (await fetch(file.url)).json();
             }
             return obj;
         })(await (await fetch(ext.url)).json());
