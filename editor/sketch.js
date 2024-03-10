@@ -1,5 +1,7 @@
 const version = "3.0";
 
+$("#version").text("v" + version);
+
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
 let color1 = "#0088ff";
