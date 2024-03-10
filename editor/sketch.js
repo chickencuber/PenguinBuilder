@@ -262,14 +262,18 @@ workspace.scale = 0.7;
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
 workspace.registerButtonCallback("Load_Extension", () => {
-  const ext = window.open("./extensionGallery", "", "popup");
-  const int = setInterval(() => {
-    if(ext.loadedExtension) {
-      clearInterval(int);
-      (new Function(ext.loadedExtension))();
-    }
-  }, 10);
+  window.open("./extensionGallery", "", "popup");
 });
+
+
+window.addEventListener("message", (e) => {
+  const data = e.data.data;
+  switch(e.data.type) {
+    case "extension":
+      (new Function(data.code))();
+      break;
+  }
+}, false);
 
 const disableTopBlocksPlugin = new DisableTopBlocks();
 disableTopBlocksPlugin.init();

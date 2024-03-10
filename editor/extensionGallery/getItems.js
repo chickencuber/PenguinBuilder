@@ -5,7 +5,7 @@ $.custom("button-option", (elt) => {
         width: "80%",
         height: "60%"
     }).props({ src: elt.getProp("src") }), $.create("div").text(elt.text()),
-    $.create("div").text(elt.getProp("d")? elt.getProp("d"): "").css({
+    $.create("div").text(elt.getProp("d") ? elt.getProp("d") : "").css({
         "font-size": "10px"
     })
     ]).css({
@@ -48,13 +48,13 @@ const data = {};
 function showData(data) {
     for (const value of Object.values(data)) {
         $("main").child($.create("button-option").props({ src: value.image, d: value.options.description }).text(value.options["display-name"]).click(() => {
-            if(value.options["potential-danger"]) {
-                if(confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
-                    window.loadedExtension = value.javascript;
+            if (value.options["potential-danger"]) {
+                if (confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
+                    opener.postMessage({type: "extension", data: value.javascript}, "*");
                 }
                 return;
             }
-            window.loadedExtension = value.javascript;
+            opener.postMessage({type: "extension", data: value.javascript}, "*");
         }));
     }
 }
