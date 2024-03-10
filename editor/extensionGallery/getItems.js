@@ -7,6 +7,9 @@ $.custom("button-option", (elt) => {
     }).props({ src: elt.getProp("src") }), $.create("div").text(elt.text()),
     $.create("div").text(elt.getProp("d") ? elt.getProp("d") : "").css({
         "font-size": "10px"
+    }),
+    $.create("div").text(elt.getProp("c") ? `by: ${elt.getProp("c")}`: "").css({
+        "font-size": "10px",
     })
     ]).css({
         width: "100%",
@@ -46,15 +49,15 @@ const data = {};
 
 
 function showData(data) {
-    for (const value of Object.values(data)) {
-        $("main").child($.create("button-option").props({ src: value.image, d: value.options.description }).text(value.options["display-name"]).click(() => {
+    for (const [key, value] of Object.entries(data)) {
+        $("main").child($.create("button-option").props({ src: value.image, d: value.options.description, c: value.options.creator }).text(value.options["display-name"]).click(() => {
             if (value.options["potential-danger"]) {
                 if (confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
-                    opener.postMessage({type: "extension", data: value.javascript}, "*");
+                    opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
                 }
                 return;
             }
-            opener.postMessage({type: "extension", data: value.javascript}, "*");
+            opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
         }));
     }
 }

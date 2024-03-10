@@ -261,16 +261,28 @@ workspace.scale = 0.7;
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
+let extensionWindow;
+
 workspace.registerButtonCallback("Load_Extension", () => {
-  window.open("./extensionGallery", "", "popup");
+  extensionWindow = window.open("./extensionGallery", "", "popup");
 });
 
+let extensions = {};
 
 window.addEventListener("message", (e) => {
   const data = e.data.data;
-  switch(e.data.type) {
+  switch (e.data.type) {
     case "extension":
-      (new Function(data.code))();
+      if (extensions[data.id]) {
+        extensionWindow.close();
+        alert("this extension has already been loaded");
+        return;
+      };
+      extensions[data.id] = data.code;
+      extensionWindow.close();
+      setTimeout(() => {
+        (new Function(data.code))();
+      }, 20);
       break;
   }
 }, false);
@@ -351,7 +363,7 @@ function saveProject(saveName) {
   getID();
   const blocks = Blockly.serialization.workspaces.save(workspace);
   download(
-    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed }),
+    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed, extensions }),
     saveName + ".pb"
   );
 }
@@ -371,6 +383,22 @@ function loadProject(file) {
       $("#force-unsandboxed").elt.checked = blocks.forceUnsandboxed;
 
       getID();
+
+      while (toolbox.contents.length > 17) {
+        toolbox.contents.pop();
+      }
+
+      workspace.updateToolbox(toolbox);
+      workspace.refreshToolboxSelection();
+
+      if (blocks.extensions) {
+        extensions = blocks.extensions;
+        for (const code of Object.values(extensions)) {
+          (new Function(code))();
+        }
+      } else {
+        extensions = {};
+      }
 
       Blockly.serialization.workspaces.load(blocks.blocks, workspace);
     } catch (er) {

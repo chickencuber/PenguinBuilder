@@ -34,7 +34,6 @@ button-option:hover {
 main {
   display: flex;
   justify-content: center;
-  align-items: center;
   background: white;
   position: absolute;
   top: 5%;
