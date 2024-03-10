@@ -23,7 +23,8 @@ const data = {};
     const url = "https://api.github.com/repos/chickencuber/PenguinBuilder_ExtensionGallery/contents";
     const exclude = [
         "extensions.d.ts",
-        "tsconfig.json"
+        "tsconfig.json",
+        "from_file",
     ]
     const val = (await (await fetch(url)).json()).filter(v => {
         return !exclude.includes(v.name);
