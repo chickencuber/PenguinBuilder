@@ -262,7 +262,13 @@ workspace.scale = 0.7;
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
 workspace.registerButtonCallback("Load_Extension", () => {
-  window.open("./extensionGallery", "", "popup");
+  const ext = window.open("./extensionGallery", "", "popup");
+  const int = setInterval(() => {
+    if(ext.loadedExtension) {
+      clearInterval(int);
+      (new Function(ext.loadedExtension))();
+    }
+  }, 10);
 });
 
 const disableTopBlocksPlugin = new DisableTopBlocks();
@@ -345,23 +351,6 @@ function saveProject(saveName) {
     saveName + ".pb"
   );
 }
-
-function loadExtension(file) {
-  const reader = new FileReader();
-
-  reader.onload = function (e) {
-    try {
-      const content = e.target.result;
-      (new Function(content))();
-    } catch (er) {
-      alert(`An unexpected error occured:
-${er}`);
-    }
-  };
-  reader.readAsText(file);
-}
-
-
 
 function loadProject(file) {
   const reader = new FileReader();

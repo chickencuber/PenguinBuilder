@@ -46,7 +46,15 @@ const data = {};
 
 
 function showData(data) {
-    for (const [id, value] of Object.entries(data)) {
-        $("main").child($.create("button-option").props({ src: value.image, d: value.options.description }).text(value.options["display-name"]));
+    for (const value of Object.values(data)) {
+        $("main").child($.create("button-option").props({ src: value.image, d: value.options.description }).text(value.options["display-name"]).click(() => {
+            if(value.options["potential-danger"]) {
+                if(confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
+                    window.loadedExtension = value.javascript;
+                }
+                return;
+            }
+            window.loadedExtension = value.javascript;
+        }));
     }
 }
