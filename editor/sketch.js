@@ -1,4 +1,6 @@
-const version = "2.9";
+const version = "3.0";
+
+$("#version").text("v" + version);
 
 let Extension_id = "ExtensionID";
 let name = "ExtensionName";
@@ -6,7 +8,7 @@ let color1 = "#0088ff";
 let forceUnsandboxed = false;
 
 function getTopBlocks(block) {
-  if(block.parentBlock_ === null) {
+  if (block.parentBlock_ === null) {
     return block;
   }
   return getTopBlocks(block.parentBlock_);
@@ -59,6 +61,23 @@ function block(name) {
     type: name,
     gap: 8,
   };
+}
+
+function button(name, callbackID) {
+  return {
+    kind: "button",
+    text: name,
+    callbackKey: callbackID
+  };
+}
+
+function category(name, color, contents) {
+  return {
+    kind: "category",
+    name,
+    colour: color,
+    contents
+  }
 }
 
 const toolbox = {
@@ -224,6 +243,10 @@ addFromPrefix("logic_", "logic", "#002CB9", []);
 
 addCategory("colour", "#FFF800", "color");
 
+toolbox.contents.push(category("Extensions", "#555", [
+  button("Load Extension", "Load_Extension"),
+]));
+
 Blockly.Themes.Classic.startHats = true;
 
 const workspace = Blockly.inject("block-editor", {
@@ -239,6 +262,32 @@ const workspace = Blockly.inject("block-editor", {
 workspace.scale = 0.7;
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
+
+let extensionWindow;
+
+workspace.registerButtonCallback("Load_Extension", () => {
+  extensionWindow = window.open("./extensionGallery", "", "popup");
+});
+
+let extensions = {};
+
+window.addEventListener("message", (e) => {
+  const data = e.data.data;
+  switch (e.data.type) {
+    case "extension":
+      if (extensions[data.id]) {
+        extensionWindow.close();
+        alert("this extension has already been loaded");
+        return;
+      };
+      extensions[data.id] = data.code;
+      extensionWindow.close();
+      setTimeout(() => {
+        (new Function(data.code))();
+      }, 20);
+      break;
+  }
+}, false);
 
 const disableTopBlocksPlugin = new DisableTopBlocks();
 disableTopBlocksPlugin.init();
@@ -316,7 +365,7 @@ function saveProject(saveName) {
   getID();
   const blocks = Blockly.serialization.workspaces.save(workspace);
   download(
-    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed }),
+    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed, extensions }),
     saveName + ".pb"
   );
 }
@@ -336,6 +385,22 @@ function loadProject(file) {
       $("#force-unsandboxed").elt.checked = blocks.forceUnsandboxed;
 
       getID();
+
+      while (toolbox.contents.length > 17) {
+        toolbox.contents.pop();
+      }
+
+      workspace.updateToolbox(toolbox);
+      workspace.refreshToolboxSelection();
+
+      if (blocks.extensions) {
+        extensions = blocks.extensions;
+        for (const code of Object.values(extensions)) {
+          (new Function(code))();
+        }
+      } else {
+        extensions = {};
+      }
 
       Blockly.serialization.workspaces.load(blocks.blocks, workspace);
     } catch (er) {
@@ -357,7 +422,7 @@ $("#Load").click(() => {
   $("#fileInput").click();
 });
 
-$("#fileInput").on("change", () => {
+$("#fileInput").on("change", (event) => {
   const fileInput = event.target;
   const selectedFile = fileInput.files[0];
 

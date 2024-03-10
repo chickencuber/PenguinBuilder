@@ -36,3 +36,11 @@ a {
 label {
   color: white;
 }
+
+#version {
+  position: absolute;
+  color: white;
+  text-align: right;
+  right: 10px;
+  top: 5px;
+}

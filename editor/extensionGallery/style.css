@@ -1,0 +1,43 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #00c3ff;
+}
+
+button:not(.option) {
+  color: white;
+  background: #00c3ff;
+  border-radius: 5px;
+  border-color: #00c3ff;
+  border: none;
+}
+
+button:hover {
+  background: #62D8FC;
+}
+
+button-option {
+  background: white;
+  color: black;
+  border-color: black;
+  width: 20%;
+  height: 30%;
+  font-size: large;
+  margin: 5%;
+}
+
+button-option:hover {
+  background: rgb(240, 240, 240);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  background: white;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: calc(100vw - 10%);
+  height: calc(100vh - 10%);
+}
