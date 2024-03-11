@@ -8,7 +8,7 @@ $.custom("button-option", (elt) => {
     $.create("div").text(elt.getProp("d") ? elt.getProp("d") : "").css({
         "font-size": "10px"
     }),
-    $.create("div").text(elt.getProp("c") ? `by: ${elt.getProp("c")}`: "").css({
+    $.create("div").text(elt.getProp("c") ? `by: ${elt.getProp("c")}` : "").css({
         "font-size": "10px",
     })
     ]).css({
@@ -24,7 +24,6 @@ const data = {};
     const exclude = [
         "extensions.d.ts",
         "tsconfig.json",
-        "from_file",
     ]
     const val = (await (await fetch(url)).json()).filter(v => {
         return !exclude.includes(v.name);
@@ -44,6 +43,9 @@ const data = {};
             options: await (await fetch(contents["options.json"].download_url)).json(),
             javascript: await (await fetch(contents["index.js"].download_url)).text(),
         }
+        if (data[ext.name].options.loader) {
+            data[ext.name].code = new Function(data[ext.name].javascript);
+        }
     }
     showData(data);
 })();
@@ -54,11 +56,21 @@ function showData(data) {
         $("main").child($.create("button-option").props({ src: value.image, d: value.options.description, c: value.options.creator }).text(value.options["display-name"]).click(() => {
             if (value.options["potential-danger"]) {
                 if (confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
-                    opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
+                    postData(key, value);
                 }
                 return;
             }
-            opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
+            postData(key, value);
         }));
     }
+}
+
+function postData(key, value) {
+    if (value.options.loader) {
+        value.code().then(v => {
+            opener.postMessage({ type: "extension", data: { code: v, id: crypto.randomUUID() } }, "*");
+        })
+        return;
+    }
+    opener.postMessage({ type: "extension", data: { code: value.javascript, id: key } }, "*");
 }
