@@ -1,21 +1,16 @@
-$.loadPlugin(JSQuery.CustomElements, true);
-
-$.custom("button-option", (elt) => {
+function createOption(data) {
     return $.create("button").child([$.create("img").css({
-        width: "80%",
-        height: "60%"
-    }).props({ src: elt.getProp("src") }), $.create("div").text(elt.text()),
-    $.create("div").text(elt.getProp("d") ? elt.getProp("d") : "").css({
+        width: "65%",
+        height: "45%"
+    }).props({ src: data.image }), $.create("div").text(data.options["display-name"]),
+    $.create("div").text(data.options.description).css({
         "font-size": "10px"
     }),
-    $.create("div").text(elt.getProp("c") ? `by: ${elt.getProp("c")}`: "").css({
+    $.create("div").text(`by: ${data.options.creator}`).css({
         "font-size": "10px",
     })
-    ]).css({
-        width: "100%",
-        height: "100%",
-    });
-})
+    ]).class("option");
+}
 
 const data = {};
 
@@ -24,7 +19,6 @@ const data = {};
     const exclude = [
         "extensions.d.ts",
         "tsconfig.json",
-        "from_file",
     ]
     const val = (await (await fetch(url)).json()).filter(v => {
         return !exclude.includes(v.name);
@@ -44,6 +38,9 @@ const data = {};
             options: await (await fetch(contents["options.json"].download_url)).json(),
             javascript: await (await fetch(contents["index.js"].download_url)).text(),
         }
+        if (data[ext.name].options.loader) {
+            data[ext.name].code = new Function(data[ext.name].javascript);
+        }
     }
     showData(data);
 })();
@@ -51,14 +48,24 @@ const data = {};
 
 function showData(data) {
     for (const [key, value] of Object.entries(data)) {
-        $("main").child($.create("button-option").props({ src: value.image, d: value.options.description, c: value.options.creator }).text(value.options["display-name"]).click(() => {
+        $("main").child(createOption(value).click(() => {
             if (value.options["potential-danger"]) {
                 if (confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
-                    opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
+                    postData(key, value);
                 }
                 return;
             }
-            opener.postMessage({type: "extension", data: {code: value.javascript, id: key}}, "*");
+            postData(key, value);
         }));
     }
+}
+
+function postData(key, value) {
+    if (value.options.loader) {
+        value.code().then(v => {
+            opener.postMessage({ type: "extension", data: { code: v, id: crypto.randomUUID() } }, "*");
+        })
+        return;
+    }
+    opener.postMessage({ type: "extension", data: { code: value.javascript, id: key } }, "*");
 }
