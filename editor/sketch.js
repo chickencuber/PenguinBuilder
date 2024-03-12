@@ -280,10 +280,12 @@ window.addEventListener("message", (e) => {
         alert("this extension has already been loaded");
         return;
       };
-      extensions[data.id] = data.code;
       extensionWindow.close();
       setTimeout(() => {
+        try {
         (new Function(data.code))();
+        extensions[data.id] = data.code;
+        } catch(e) {};
       }, 20);
       break;
   }
