@@ -1,9 +1,9 @@
-// $.all(".category").click(function () {
-//     const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
-//     const elt = $(id);
-//     $("#categories").children.removeClass("selected");
-//     $.from(this).class("selected");
-// });
+$.all(".category").click(function () {
+    const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
+    const elt = $(id);
+    $("#categories").children.removeClass("selected");
+    $.from(this).class("selected");
+});
 
 (async () => {
     const markdownContent = {};
