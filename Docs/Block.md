@@ -15,6 +15,7 @@ creates a block in you extension
     * __Create Input Menu__
     * __Create Input From Menu__
 * function: the input to run the function that the block will run
+---
 ## Create Input
 Creates an input of a specific type(other than menu's)
 ### Arguments
@@ -31,10 +32,27 @@ Creates an input of a specific type(other than menu's)
     * note
     * matrix
 * default text: the default value of the input(if the type supports it)
+---
 ## Create Input Menu
 Creates a Menu
-## Arguments
+### Arguments
 * ID: the ID of the input(make sure the id is __unique__ to other inputs)
 * Accept Reporters: a boolean on weather the input allows Reporters
 * Menu: An Array that represents the menu(Accepts a string or a menu item)
 ![image of block](./Create%20Input%20Menu.png)
+---
+## Create Menu
+like "Create Input Menu", this block will create a menu, but it can be used more than once
+### Arguments
+* ID: the ID of the menu(make sure the id is __unique__ to other menus)
+* Accept Reporters: a boolean on weather the input allows Reporters
+* Menu: An Array that represents the menu(Accepts a string or a menu item)
+![image of block](./Create%20Menu.png)
+---
+## Create Input From Menu
+creates an input from a menu created will "Create Menu"
+### Arguments
+* ID: the ID of the input(make sure the id is __unique__ to other inputs)
+* Menu ID: The Id of the menu you want to use(make sure the Menu Id is the same and the Id of the menu)
+![image of block](./Create%20Input%20From%20Menu.png)
+---
