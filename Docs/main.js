@@ -2,7 +2,8 @@ $.all(".category").click(function () {
     const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
     const elt = $(id);
     $("#categories").children.removeClass("selected");
-    $.from(this).class("selected");
+    $.from(this).class("selected")
+    elt.elt.scrollIntoView({ behavior: 'smooth' });
 });
 
 (async () => {
