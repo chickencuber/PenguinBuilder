@@ -1,13 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>PenguinBuilder-Docs</title>
-        <script src="https://cdn.jsdelivr.net/gh/chickencuber/jsquery@latest/jsquery.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <a href=".." id="home-page"></a>
-        <script src="../editor/pages.js"></script>
-        <button onclick="loadPage(`home-page`)">Home</button>
-    </body>
+  <head>
+    <title>PenguinBuilder-Docs</title>
+    <script src="https://cdn.jsdelivr.net/gh/chickencuber/jsquery@latest/jsquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.10.2/dist/showdown.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <a href="..">
+      <button>Home</button>
+    </a>
+    <main>
+      <div id="categories">
+        <button class="category selected">
+          <div class="circle" style="background: #ac00ac;"></div>
+          Block
+        </button>
+        <button class="category">
+          <div class="circle" style="background: cyan;"></div>
+          Utils
+        </button>
+        <button class="category">
+          <div class="circle" style="background: blue;"></div>
+          Alert
+        </button>
+        <button class="category">
+          <div class="circle" style="background: cyan;"></div>
+          Eval
+        </button>
+        <button class="category">
+          <div class="circle" style="background: red;"></div>
+          JSON
+        </button>
+        <button class="category">
+          <div class="circle" style="background: blue;"></div>
+          Variables+
+        </button>
+        <button class="category">
+          <div class="circle" style="background: gray;"></div>
+          Extensions
+        </button>
+        <button class="category">
+          <div class="circle" style="background: gray;"></div>
+          creating extensions
+        </button>
+        <button class="category">
+          <div class="circle" style="background: gray;"></div>
+          posting extensions
+      </button>
+      </div>
+      <div id="docs">
+        <div id="Block"></div>
+        <div id="Utils"></div>
+        <div id="Alert"></div>
+        <div id="Eval"></div>
+        <div id="JSON"></div>
+        <div id="Variables"></div>
+        <div id="Extensions"></div>
+        <div id="creatingextensions"></div>
+        <div id="postingextensions"></div>
+      </div>
+    </main>
+    <script src="./main.js"></script>
+  </body>
 </html>
