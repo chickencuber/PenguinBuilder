@@ -1,7 +1,8 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    background: #00c3ff;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #00c3ff;
 }
 
 main {
@@ -13,6 +14,9 @@ main {
   height: calc(100vh - 20px);
   bottom: 0px;
   left: 20px;
+}
+
+#docs {
   overflow-y: scroll;
 }
 
@@ -25,7 +29,7 @@ main {
   font-size: 20px;
 }
 
-.category:hover{
+.category:hover {
   background: #cccccc;
 }
 
@@ -45,13 +49,13 @@ main {
 }
 
 button:not(.category) {
-    color: white;
-    background: #00c3ff;
-    border-radius: 5px;
-    border-color: #00c3ff;
-    border: none;
-  }
+  color: white;
+  background: #00c3ff;
+  border-radius: 5px;
+  border-color: #00c3ff;
+  border: none;
+}
 
-  button:hover:not(.category) {
-    background: #62D8FC;
-  }
+button:hover:not(.category) {
+  background: #62D8FC;
+}
