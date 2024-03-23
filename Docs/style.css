@@ -13,6 +13,9 @@ main {
   height: calc(100vh - 20px);
   bottom: 0px;
   left: 20px;
+}
+
+#categories {
   overflow-y: scroll;
 }
 
