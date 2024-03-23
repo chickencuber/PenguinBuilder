@@ -31,3 +31,10 @@ Creates an input of a specific type(other than menu's)
     * note
     * matrix
 * default text: the default value of the input(if the type supports it)
+## Create Input Menu
+Creates a Menu
+## Arguments
+* ID: the ID of the input(make sure the id is __unique__ to other inputs)
+* Accept Reporters: a boolean on weather the input allows Reporters
+* Menu: An Array that represents the menu(Accepts a string or a menu item)
+![image of block](./Create%20Input%20Menu.png)
