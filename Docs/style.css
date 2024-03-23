@@ -5,6 +5,8 @@ html, body {
 }
 
 main {
+  display: flex;
+  justify-content: center;
   background: white;
   position: absolute;
   width: calc(100vw - 40px);
