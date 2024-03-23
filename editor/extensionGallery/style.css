@@ -25,8 +25,8 @@ button:hover:not(.option) {
   background: white;
   color: black;
   border-color: black;
-  width: 20%;
-  height: 30%;
+  width: 150px;
+  height: 200px;
   font-size: large;
   margin: 5%;
   border-radius: 4px;
@@ -37,7 +37,7 @@ button:hover:not(.option) {
 }
 
 .option:hover {
-  background: rgb(240, 240, 240);
+  background: #f0f0f0;
 }
 
 main {
@@ -45,8 +45,8 @@ main {
   justify-content: center;
   background: white;
   position: absolute;
-  top: 5%;
-  left: 5%;
-  width: calc(100vw - 10%);
-  height: calc(100vh - 10%);
+  top: 20px;
+  left: 20px;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
 }
