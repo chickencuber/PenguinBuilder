@@ -6,7 +6,7 @@ html, body {
 
 main {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   background: white;
   position: absolute;
   width: calc(100vw - 40px);
