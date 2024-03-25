@@ -44,7 +44,7 @@ $("#docs").on("scroll", () => {
             rect.right <= (window.innerWidth || html.clientWidth)
         );
     }
-    for(const elt of $("#doc").children) {
+    for(const elt of $("#docs").children) {
         if(isInViewport(elt.elt)) {
             $("#categories").children.removeClass("selected");
             $("#button-" + elt.id()).class("selected");
