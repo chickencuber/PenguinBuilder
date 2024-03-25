@@ -20,7 +20,7 @@ creates a block in you extension
 Creates an input of a specific type(other than menu's)
 ### Arguments
 * ID: the ID of the Input(make sure the id is __unique__ to other inputs)
-* type: the type of the value exepted
+* type: the type of the value excepted
     * string
     * number
     * boolean
@@ -83,7 +83,7 @@ creates a Hat Block
 ## Call Hat/ Call Hat With Args
 calls a hat block through the scratch vm(make sure the extension is unsandboxed)
 ### Arguments
-* ID: the ID of the Hat ou want to call
+* ID: the ID of the Hat you want to call
 * Args(for __Call Hat With Args__ only): an Object that represents the inputs in the hat
 ![image of block](./call-hat.png)
 ---
