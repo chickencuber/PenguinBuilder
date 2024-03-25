@@ -31,24 +31,3 @@ $.all(".category").click(function () {
     }
 
 })()
-
-
-$("#docs").on("scroll", () => {
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        const html = document.documentElement;
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || html.clientHeight) &&
-            rect.right <= (window.innerWidth || html.clientWidth)
-        );
-    }
-    for(const elt of $("#docs").children) {
-        if(isInViewport(elt.elt)) {
-            $("#categories").children.removeClass("selected");
-            $("#button-" + elt.id()).class("selected");
-            return;
-        }
-    }
-});
