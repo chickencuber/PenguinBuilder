@@ -6,24 +6,6 @@ $.all(".category").click(function () {
     elt.elt.scrollIntoView({ behavior: 'smooth' });
 });
 
-// $.doc().on("scroll", () => {
-//     const categoryPositions = $("#docs").children.map(section => {
-//         const rect = section.elt.getBoundingClientRect();
-//         return { id: "button-" + section.id(), top: rect.top, bottom: rect.bottom };
-//     });
-
-//     const activeCategory = categoryPositions.find(category => category.top <= 0 && category.bottom > 0);
-
-//     $("#categories").children.removeClass("selected");
-
-//     if (activeCategory) {
-//         const activeButton = $(`.category[data-section-id="${activeCategory.id}"]`);
-//         if (activeButton) {
-//             activeButton.class("selected");
-//         }
-//     }
-// })
-
 (async () => {
     const markdownContent = {};
     for (const f of ["Block",
