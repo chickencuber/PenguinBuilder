@@ -56,3 +56,34 @@ creates an input from a menu created will "Create Menu"
 * Menu ID: The Id of the menu you want to use(make sure the Menu Id is the same and the Id of the menu)
 ![image of block](./Create%20Input%20From%20Menu.png)
 ---
+## Menu Item
+creates a menu item
+__returns: Object__
+### Arguments
+* text: the text that the menu shows
+* value: the value the item returns when getting the Input
+---
+## Get Input
+gets a value of an input and returns it
+### Arguments
+* Input ID: the ID of the input you want
+---
+## Return
+returns from a block
+### Arguments
+* value: the return value
+---
+## Create Hat
+creates a Hat Block
+### Arguments
+* ID: the ID of the Hat(make sure the ID is __unique__ to other Hats)
+* Text: the display name of the block, put any inputs in brackets
+![image of block](./Create%20Hat.png)
+---
+## Call Hat/ Call Hat With Args
+calls a hat block through the scratch vm(make sure the extension is unsandboxed)
+### Arguments
+* ID: the ID of the Hat ou want to call
+* Args(for __Call Hat With Args__ only): an Object that represents the inputs in the hat
+![image of block](./call-hat.png)
+---
