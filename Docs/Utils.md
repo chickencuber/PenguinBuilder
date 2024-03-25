@@ -21,6 +21,9 @@ __returns: boolean__
 * value 1
 * value 2
 ---
+## Random Bool
+returns a random boolean
+---
 ## Comments(// and /**/)
 doesn't actually do anything
 ### Arguments
