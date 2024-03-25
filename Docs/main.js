@@ -6,7 +6,7 @@ $.all(".category").click(function () {
     elt.elt.scrollIntoView({ behavior: 'smooth' });
 });
 
-$("#docs").on("scroll", () => {
+$.doc().on("scroll", () => {
     const categoryPositions = $("#docs").children.map(section => {
         const rect = section.elt.getBoundingClientRect();
         return { id: "button-" + section.id(), top: rect.top, bottom: rect.bottom };
