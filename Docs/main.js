@@ -8,7 +8,7 @@ $.all(".category").click(function () {
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        console.log(entry);
+        console.log(entry.target);
     })
 });
 
