@@ -6,14 +6,6 @@ $.all(".category").click(function () {
     elt.elt.scrollIntoView({ behavior: 'smooth' });
 });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        console.log(entry.target);
-    })
-});
-
-observer.observe($("#docs").elt);
-
 (async () => {
     const markdownContent = {};
     for (const f of ["Block",
