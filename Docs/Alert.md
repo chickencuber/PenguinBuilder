@@ -4,7 +4,7 @@ displays a message to the user
 ### Arguments
 * message: the message displayed to the user
 ___
-## Confirm 
+## Confirm
 displays a message and has the user confirm or deny the message
 __returns: boolean of the users input__
 ### Arguments
