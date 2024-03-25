@@ -30,3 +30,4 @@ doesn't actually do anything
 creates a function and then automatically runs the code in it
 ### Arguments
 * code: the code that the function runs
+---
