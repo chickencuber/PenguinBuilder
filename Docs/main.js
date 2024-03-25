@@ -33,7 +33,7 @@ $.all(".category").click(function () {
 })()
 
 
-$("#doc").on("scroll", () => {
+$("#docs").on("scroll", () => {
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
         const html = document.documentElement;
