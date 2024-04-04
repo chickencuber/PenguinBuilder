@@ -2,6 +2,20 @@ let scrolling = false;
 
 $.all(".category").click(function () {
     scrolling = true;
+    const end = (e) => {
+        scrolling = false;
+        $("#docs").removeEvent(
+            "scrollend",
+            end,
+            { once: true }
+        );
+    };
+    $("#docs").on(
+        "scrollend",
+        end,
+        { once: true }
+    );
+
     const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
     const elt = $(id);
     elt.elt.scrollIntoView({ behavior: 'smooth' });
@@ -35,14 +49,7 @@ $.all(".category").click(function () {
 
 })()
 
-
-$("#docs").on(
-    "scrollend",
-    () => scrolling = false,
-    { once: true }
-);
-
 $("#docs").on("scroll", (e) => {
-    if(scrolling) return;
+    if (scrolling) return;
     console.log(e);
 });
