@@ -31,3 +31,7 @@ $.all(".category").click(function () {
     }
 
 })()
+
+$("#docs").on("scroll", (e) => {
+    console.log(e)
+});
