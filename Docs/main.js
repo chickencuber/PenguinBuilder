@@ -51,5 +51,28 @@ $.all(".category").click(function () {
 
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
-    console.log(e);
+    const categories = $.all(".category");
+    const docSections = $("#docs").children;
+    const scrollTop = $("#docs").elt.scrollTop;
+
+    // Iterate over each section and find the one currently in view
+    for (let i = 0; i < docSections.length; i++) {
+        const section = docSections[i];
+        const rect = section.elt.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+
+        if (sectionTop <= 0 && sectionBottom >= 0) {
+            // This section is currently in view
+            const sectionId = section.id();
+            const category = categories.find(cat => cat.text() === sectionId);
+            if (category) {
+                // Remove selected class from all categories
+                categories.removeClass("selected");
+                // Add selected class to the corresponding category
+                category.class("selected");
+            }
+            break; // Exit loop once we find the visible section
+        }
+    }
 });
