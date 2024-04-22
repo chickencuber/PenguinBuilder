@@ -51,5 +51,5 @@ $.all(".category").click(function () {
 
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
-    console.log(e);
+    console.log(e.target.scrollY);
 });
