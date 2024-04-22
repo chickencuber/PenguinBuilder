@@ -1,5 +1,5 @@
 class Rect extends JSQuery.Plugin {
-    $() {
+    Element() {
         return {
             rect() {
                 return this.elt.getBoundingClientRect();
