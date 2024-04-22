@@ -47,7 +47,6 @@ $.all(".category").click(function () {
         "Eval",
         "JSON",
         "Variables",
-        "Extensions",
         "creatingextensions",
         "postingextensions"]) {
         const contents = await fetch("./" + f + ".md");
