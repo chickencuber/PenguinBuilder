@@ -10,10 +10,6 @@ class Rect extends JSQuery.Plugin {
 
 $.loadPlugin(Rect, true);
 
-Number.prototype.within = function (least, most) {
-    return this >= least && this <= most
-}
-
 let scrolling = false;
 
 $.all(".category").click(function () {
@@ -67,14 +63,12 @@ $.all(".category").click(function () {
 
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
-    const scroll = e.target.scrollTop;
     for(const v of $("#docs").children) {
         const rect = v.rect();
-        const pos = rect.top - $("docs").rect().top
-        if(scroll.within(pos - rect.height, pos)) {
+        if(rect.top === 0) {
             $("#categories").children.removeClass("selected");
-            $(`#button-${v.id()}`).class("selected");
-            //return;
+            $(`#button-${v.id()}`).class("selected")
+            return;
         }
     }
 });
