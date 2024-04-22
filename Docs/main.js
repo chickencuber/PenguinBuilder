@@ -68,9 +68,10 @@ $.all(".category").click(function () {
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
     const scroll = e.target.scrollTop;
+    console.log(scroll);
     for(const v of $("#docs").children) {
         const rect = v.rect();
-        if(scroll.within(rect.y - rect.height, rect.y)) {
+        if(scroll.within(rect.top - rect.height, rect.top)) {
             $("#categories").children.removeClass("selected");
             $(`#button-${v.id()}`).class("selected");
             return;
