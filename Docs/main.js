@@ -1,3 +1,19 @@
+class Rect extends JSQuery.Plugin {
+    $() {
+        return {
+            rect() {
+                return this.elt.getBoundingClientRect();
+            }
+        }
+    }
+}
+
+$.loadPlugin(Rect, true);
+
+Number.prototype.within = function (least, most) {
+    return this >= least && this <= most
+}
+
 let scrolling = false;
 
 $.all(".category").click(function () {
@@ -51,5 +67,12 @@ $.all(".category").click(function () {
 
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
-    console.log(e.target);
+    const scroll = e.target.scrollTop;
+    for(const v of $("#docs").children) {
+        const rect = v.rect();
+        console.log(rect);
+        if(scroll.within(rect.top, 0)) {
+
+        }
+    }
 });
