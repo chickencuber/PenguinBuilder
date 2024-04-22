@@ -70,7 +70,7 @@ $("#docs").on("scroll", (e) => {
     const scroll = e.target.scrollTop;
     for(const v of $("#docs").children) {
         const rect = v.rect();
-        if(scroll.within(rect.y, rect.y + rect.height)) {
+        if(scroll.within(rect.y - rect.height, rect.y)) {
             $("#categories").children.removeClass("selected");
             $(`#button-${v.id()}`).class("selected");
             return;
