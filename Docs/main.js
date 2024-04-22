@@ -65,14 +65,18 @@ $.all(".category").click(function () {
 
 })()
 
+let last = $("#docs").elt.scrollTop;
+
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
+    const scroll = e.target.scrollTop;
     for(const v of $("#docs").children) {
         const rect = v.rect();
-        if(rect.top.within(0, innerHeight) || rect.bottom.within(0, innerHeight)) {
+        if((scroll < last? rect.bottom: rect.top).within(0, innerHeight)) {
             $("#categories").children.removeClass("selected");
             $(`#button-${v.id()}`).class("selected")
-            return;
+            break;
         }
     }
+    last = scroll;
 });
