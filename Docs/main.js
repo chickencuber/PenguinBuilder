@@ -70,9 +70,10 @@ $("#docs").on("scroll", (e) => {
     const scroll = e.target.scrollTop;
     for(const v of $("#docs").children) {
         const rect = v.rect();
-        console.log(rect);
-        if(scroll.within(rect.top, 0)) {
-
+        if(scroll.within(rect.y, rect.y + rect.height)) {
+            $("#categories").children.removeClass("selected");
+            $(`button-${v.id()}`).class("selected");
+            return;
         }
     }
 });
