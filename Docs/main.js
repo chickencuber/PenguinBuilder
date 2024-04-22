@@ -71,6 +71,7 @@ $("#docs").on("scroll", (e) => {
     for(const v of $("#docs").children) {
         const rect = v.rect();
         if(scroll.within(rect.y, rect.y + rect.height)) {
+            console.log(v);
             $("#categories").children.removeClass("selected");
             $(`button-${v.id()}`).class("selected");
             return;
