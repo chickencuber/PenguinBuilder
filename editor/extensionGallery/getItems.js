@@ -49,7 +49,7 @@ const data = {};
 function showData(data) {
     for (const [key, value] of Object.entries(data)) {
         $("main").child(createOption(value).click(() => {
-            if (value.options["potential-danger"]) {
+            if (value.options["potential-danger"] || value.options.loader) {
                 if (confirm("this extension is potentially dangerous\nare you sure you want to load it")) {
                     postData(key, value);
                 }
