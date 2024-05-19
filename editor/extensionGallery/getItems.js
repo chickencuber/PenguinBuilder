@@ -15,7 +15,7 @@ function createOption(data) {
 const data = {};
 
 (async () => {
-    const url = "https://api.github.com/repos/chickencuber/PenguinBuilder_ExtensionGallery/contents";
+    const url = "https://api.github.com/repos/chickencuber/PenguinBuilder_ExtensionGallery/contents?cache=" + Date.now();
     const exclude = [
         "extensions.d.ts",
         "tsconfig.json",
@@ -32,11 +32,11 @@ const data = {};
             }
             return obj;
         })(await (await fetch(ext.url)).json());
-        const image = contents["image.png"] ? await (await fetch(contents["image.png"].download_url)).blob() : "./default.png";
+        const image = contents["image.png"] ? await (await fetch(contents["image.png"].download_url + "?cache=" + Date.now())).blob() : "./default.png";
         data[ext.name] = {
             image,
-            options: await (await fetch(contents["options.json"].download_url)).json(),
-            javascript: await (await fetch(contents["index.js"].download_url)).text(),
+            options: await (await fetch(contents["options.json"].download_url + "?cache=" + Date.now())).json(),
+            javascript: await (await fetch(contents["index.js"].download_url + "?cache=" + Date.now())).text(),
         }
         if (data[ext.name].options.loader) {
             data[ext.name].code = new Function(data[ext.name].javascript);
