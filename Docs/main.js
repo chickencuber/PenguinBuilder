@@ -10,7 +10,7 @@ class Rect extends JSQuery.Plugin {
 
 $.loadPlugin(Rect, true);
 
-Number.prototype.within = function(min, max) {
+Number.prototype.within = function (min, max) {
     return this >= min && this <= max;
 }
 
@@ -43,13 +43,14 @@ $.all(".category").click(function () {
     const markdownContent = {};
     for (const f of ["Block",
         "Utils",
+        "Extra_Functions",
         "Alert",
         "Eval",
         "JSON",
         "Variables",
         "creatingextensions",
         "postingextensions"]) {
-        const contents = await fetch("./" + f + ".md");
+        const contents = await fetch("./" + f + ".md?cache=" + Date.now());
         markdownContent[f] = await contents.text();
     }
     const md = markdownit()
@@ -69,9 +70,9 @@ let last = $("#docs").elt.scrollTop;
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
     const scroll = e.target.scrollTop;
-    for(const v of $("#docs").children) {
+    for (const v of $("#docs").children) {
         const rect = v.rect();
-        if((scroll < last? rect.bottom: rect.top).within(0, innerHeight)) {
+        if ((scroll < last ? rect.bottom : rect.top).within(0, innerHeight)) {
             $("#categories").children.removeClass("selected");
             $(`#button-${v.id()}`).class("selected")
             break;

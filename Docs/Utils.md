@@ -29,8 +29,3 @@ doesn't actually do anything
 ### Arguments
 * value
 ___
-## inline function(there are 3 of these)
-creates a function and then automatically runs the code in it
-### Arguments
-* code: the code that the function runs
-___

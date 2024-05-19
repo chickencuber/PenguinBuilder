@@ -97,5 +97,6 @@ ___
 * Number
 * Array
 * Object
+* Function
 **you can also add other types specific to you r extension**
 ___

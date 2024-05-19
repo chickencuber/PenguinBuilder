@@ -38,22 +38,22 @@ items: ${menu},
 };
 
 Blockly.Blocks['create_menu'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField("Create Menu");
+      .setAlign(Blockly.ALIGN_CENTRE)
+      .appendField("Create Menu");
     this.appendDummyInput()
-        .appendField("ID")
-        .appendField(new Blockly.FieldTextInput("ID"), "ID");
+      .appendField("ID")
+      .appendField(new Blockly.FieldTextInput("ID"), "ID");
     this.appendDummyInput()
-        .appendField("Accept Reporters")
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "REPORTERS");
+      .appendField("Accept Reporters")
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "REPORTERS");
     this.appendValueInput("MENU")
-        .setCheck("Array")
-        .appendField("menu");
+      .setCheck("Array")
+      .appendField("menu");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
@@ -72,29 +72,66 @@ items: ${menu},
 };
 
 Blockly.Blocks['create_input_menu'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("create Input from menu");
+      .appendField("create Input from menu");
     this.appendDummyInput()
-        .appendField("ID")
-        .appendField(new Blockly.FieldTextInput("ID"), "ID");
+      .appendField("ID")
+      .appendField(new Blockly.FieldTextInput("ID"), "ID");
     this.appendDummyInput()
-        .appendField("Menu ID")
-        .appendField(new Blockly.FieldTextInput("MenuID"), "MenuID");
+      .appendField("Menu ID")
+      .appendField(new Blockly.FieldTextInput("MenuID"), "MenuID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
-javascript.javascriptGenerator.forBlock['create_input_menu'] = function(block, generator) {
+javascript.javascriptGenerator.forBlock['create_input_menu'] = function (block, generator) {
   const ID = block.getFieldValue('ID');
   const menuId = block.getFieldValue('MenuID');
   const code = `"${ID}": {
   type: Scratch.ArgumentType.STRING,
   menu: "${Extension_id}_customMenu_${menuId}",
 },\n`;
+  return code;
+};
+
+Blockly.Blocks['create_dynamic_menu'] = {
+  init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_CENTRE)
+      .appendField("Create Dynamic Menu");
+    this.appendDummyInput()
+      .appendField("ID")
+      .appendField(new Blockly.FieldTextInput("ID"), "ID");
+    this.appendDummyInput()
+      .appendField("Accept Reporters")
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "NAME");
+    this.appendStatementInput("Function")
+      .setCheck(null)
+      .appendField("Function");
+    this.setColour(0);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['create_dynamic_menu'] = function (block, generator) {
+  const ID = block.getFieldValue('ID');
+  const reporters = block.getFieldValue('Accept') === 'TRUE';
+  const func = generator.statementToCode(block, 'Function');
+  const code = `
+  menus["${Extension_id}_customMenu_dynamic_${ID}"] = {
+    acceptReporters: ${reporters},
+    items: "${Extension_id}_customMenu_dynamic_${ID}_func",
+  };
+  Extension.prototype["${Extension_id}_customMenu_dynamic_${ID}_func"] = function() {
+    const localVars = {};
+    ${func}
+  };
+  `;
   return code;
 };

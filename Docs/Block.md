@@ -49,6 +49,14 @@ like "Create Input Menu", this block will create a menu, but it can be used more
 * Menu: An Array that represents the menu(Accepts a string or a menu item)
 ![image of block](./Create%20Menu.png)
 ___
+## Create Dynamic Menu
+create a menu simular to "Create Menu" but its dynamic
+### Arguments
+* ID: the ID of the menu(make sure the id is __unique__ to other menus)
+* Accept Reporters: a boolean on weather the input allows Reporters
+* Function: a statement for the menu(make sure it __returns__ an array)
+![image of block](./dynamic_menu.png)
+___
 ## Create Input From Menu
 creates an input from a menu created will "Create Menu"
 ### Arguments

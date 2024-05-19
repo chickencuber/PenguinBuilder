@@ -1,4 +1,75 @@
-const version = "3.0";
+const version = "3.1";
+
+const whats_new = `
+Added function type declarations and Dynamic menus along with other bug fixes
+`;
+
+class Search extends JSQuery.Plugin {
+  Element() {
+    return {
+      $(q = "") {
+        return $.from(this.elt.querySelector(q));
+      },
+      all(q = "") {
+        return $.from(this.elt.querySelectorAll(q));
+      },
+    };
+  }
+}
+
+$.loadPlugin(Search, true);
+
+class Templates extends JSQuery.Plugin {
+  Element() {
+    return {
+      replace(elt) {
+        this.elt.replaceWith(elt.elt);
+        return elt;
+      },
+      getProps() {
+        const obj = {};
+        for (const { name, value } of this.elt.attributes) {
+          obj[name] = value;
+        }
+        return obj;
+      },
+      create() {
+        if (this.elt.tagName.toLowerCase() === "template") {
+          const temp = $.create("div");
+          const props = this.getProps();
+          delete props.id;
+          for (const [k, v] of Object.entries(props)) {
+            temp.props({ [k]: v });
+          }
+          temp.class(this.id()).html(this.html());
+          return temp;
+        } else {
+          throw new Error("element isn't a template");
+        }
+      },
+    };
+  }
+}
+
+$.loadPlugin(Templates, true);
+
+
+if (localStorage.getItem("PenguinBuilder") === null) {
+  localStorage.setItem("PenguinBuilder", JSON.stringify({
+    shown_version: "0",
+  }))
+}
+
+if (JSON.parse(localStorage.getItem("PenguinBuilder")).shown_version !== version) {
+  const update = $("#whats-new").create();
+  update.$(".update").text(whats_new);
+  update.$(".close").click(() => update.remove());
+  $.body().child(update);
+  update.$(".whats-new-dialog").elt.showModal();
+  localStorage.setItem("PenguinBuilder", JSON.stringify({
+    shown_version: version,
+  }))
+}
 
 $("#version").text("v" + version);
 
@@ -97,6 +168,7 @@ const toolbox = {
         block("create_input"),
         block("input_menu"),
         block("create_menu"),
+        block("create_dynamic_menu"),
         block("create_input_menu"),
         block("menu_item"),
         block("get_input"),
@@ -118,10 +190,24 @@ const toolbox = {
         block("random_bool"),
         block("comment_one"),
         block("comment_multi"),
+      ],
+    },
+    {
+      kind: "category",
+      name: "Extra Functions",
+      colour: "#FF00E8",
+      contents: [
         block("inline_function_a"),
         block("inline_function_b"),
         block("inline_function_c"),
-      ],
+        block("function_value"),
+        block("run_function_return"),
+        block("run_function_no_return"),
+        block("run_function_return_args"),
+        block("run_function_no_return_args"),
+        block("get_function_args"),
+        block("return_block_function"),
+      ]
     },
     {
       kind: "category",
@@ -290,9 +376,9 @@ window.addEventListener("message", (e) => {
       extensionWindow.close();
       setTimeout(() => {
         try {
-        (new Function(data.code))();
-        extensions[data.id] = data.code;
-        } catch(e) {};
+          (new Function(data.code))();
+          extensions[data.id] = data.code;
+        } catch (e) { };
       }, 20);
       break;
   }
