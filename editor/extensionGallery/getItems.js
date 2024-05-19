@@ -19,6 +19,7 @@ const data = {};
     const exclude = [
         "extensions.d.ts",
         "tsconfig.json",
+        "README.md",
     ]
     const val = (await (await fetch(url)).json()).filter(v => {
         return !exclude.includes(v.name);
