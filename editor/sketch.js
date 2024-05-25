@@ -334,7 +334,7 @@ let if_block;
 addFromPrefix("logic_", "logic", "#002CB9", []);
 toolbox.contents.at(-1).contents.push(if_block);
 
-addCategory("colour", "#FFF800", "color");
+//addCategory("colour", "", "color");
 
 toolbox.contents.push(category("Extensions", "#555", [
   button("Load Extension", "Load_Extension"),
