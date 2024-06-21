@@ -11,6 +11,10 @@ Blockly.Blocks['create_label'] = {
     }
 };
 
+if(!(new URLSearchParams(location.search)).has("test")) {
+    toolbox.getToolboxItems()[1].hide;
+}
+
 javascript.javascriptGenerator.forBlock['create_label'] = function (block, generator) {
     const text = block.getFieldValue('text');
     const id = "label_" + crypto.randomUUID();
