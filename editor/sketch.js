@@ -360,7 +360,7 @@ const workspace = Blockly.inject("block-editor", {
 
 
 workspace.scale = 0.7;if(!(new URLSearchParams(location.search)).has("test")) {
-  toolbox.getToolboxItems()[1].setDisabled('true');
+  workspace.getToolbox().getToolboxItems()[1].setDisabled('true');
 }
 
 
