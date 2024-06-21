@@ -180,6 +180,18 @@ const toolbox = {
     },
     {
       kind: "category",
+      name: "Category",
+      colour: "#0026ff",
+      contents: [
+        block("order_category"),
+        block("create_label"),
+        block("create_button"),
+        block("use_block"),
+        block("use_hat"),
+      ]
+    },
+    {
+      kind: "category",
       name: "utils",
       colour: "#00E5FF",
       contents: [
@@ -194,7 +206,7 @@ const toolbox = {
     },
     {
       kind: "category",
-      name: "Extra Functions",
+      name: "Functions+",
       colour: "#FF00E8",
       contents: [
         block("inline_function_a"),
@@ -258,12 +270,6 @@ const toolbox = {
       name: "Variables",
       colour: "#2F00FF",
       custom: "VARIABLE",
-    },
-    {
-      kind: "category",
-      name: "Typed Vars",
-      colour: "#00DCFF",
-      custom: "VARIABLE_DYNAMIC",
     },
   ],
 };
@@ -391,6 +397,8 @@ const workspaceSearch = new WorkspaceSearch(workspace);
 
 workspaceSearch.init();
 
+let very_end = "";
+
 $("#Export").click(() => {
   end = "";
   menus = 0;
@@ -398,6 +406,7 @@ $("#Export").click(() => {
   if (
     Object.keys(Blockly.serialization.workspaces.save(workspace)).length !== 0
   ) {
+    workspace.getAllVariables().forEach(v => v.name = Extension_id + "_" + v.name);
     download(
       `
 // Made with PenguinBuilder ${version}
@@ -426,11 +435,13 @@ $("#Export").click(() => {
       getCode() +
       `\n
 ${end}
+${very_end}
   Scratch.extensions.register(new Extension());
 })(Scratch);
 `,
       Extension_id + ".js"
     );
+    workspace.getAllVariables().forEach(v => v.name = v.name.replace(new RegExp("^" + Extension_id + "_", "g"), ""));
   }
 });
 
