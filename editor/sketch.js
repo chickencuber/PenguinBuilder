@@ -358,7 +358,11 @@ const workspace = Blockly.inject("block-editor", {
   toolbox,
 });
 
-workspace.scale = 0.7;
+
+workspace.scale = 0.7;if(!(new URLSearchParams(location.search)).has("test")) {
+  toolbox.getToolboxItems()[1].setDisabled('true');
+}
+
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
