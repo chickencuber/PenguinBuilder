@@ -1,7 +1,7 @@
 const version = "3.2";
 
 const whats_new = `
-Added function type declarations and Dynamic menus along with other bug fixes
+Added category ordering and buttons
 `;
 
 class Search extends JSQuery.Plugin {
