@@ -1,4 +1,4 @@
-const version = "3.1";
+const version = "3.2";
 
 const whats_new = `
 Added function type declarations and Dynamic menus along with other bug fixes
