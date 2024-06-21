@@ -361,11 +361,6 @@ const workspace = Blockly.inject("block-editor", {
 
 workspace.scale = 0.7;
 
-if(!(new URLSearchParams(location.search)).has("test")) {
-  workspace.getToolbox().getToolboxItems()[2].hide();
-}
-
-
 workspace.addChangeListener(Blockly.Events.disableOrphans);
 
 let extensionWindow;
