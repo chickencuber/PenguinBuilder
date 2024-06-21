@@ -69,5 +69,8 @@ label {
 
 .whats-new-h1 {
   text-align: center;
-  bottom: 7px;
+}
+
+.update {
+  margin: 20px;
 }
