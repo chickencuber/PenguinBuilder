@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #00c3ff;
@@ -37,14 +37,6 @@ label {
   color: white;
 }
 
-#version {
-  position: absolute;
-  color: white;
-  text-align: right;
-  right: 10px;
-  top: 5px;
-}
-
 .close {
   position: absolute;
   border-radius: 1px;
@@ -73,4 +65,29 @@ label {
 
 .update {
   margin: 20px;
+}
+
+
+#top-bar {
+  position: absolute;
+  top: -5px;
+}
+
+#top-bar>input:not([type="color"]) {
+  margin-top: 6px;
+  height: 16px;
+}
+
+#top-bar>input[type="color"] {
+  margin-top: 4px;
+  border: none;
+  height: 20px;
+}
+
+#version {
+  position: absolute;
+  color: white;
+  text-align: right;
+  right: 10px;
+  top: 5px;
 }

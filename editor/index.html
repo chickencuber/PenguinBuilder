@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" type="image/png" href="../favicon.ico">
+    <link rel="icon" type="image/png" href="../favicon.ico" />
     <title>PenguinBuilder-editor</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 
@@ -19,7 +19,6 @@
     <meta charset="utf-8" />
   </head>
   <body>
-
     <template id="whats-new">
       <dialog class="whats-new-dialog">
         <h1 class="whats-new-h1">Whats New</h1>
@@ -30,34 +29,35 @@
 
     <main>
       <div id="block-editor"></div>
+      <div id="top-bar">
+        <a href="https://discord.gg/b8zHUQ4Cqn" target="_blank">
+          <button>Discord</button></a
+        >
 
-      <a href="https://discord.gg/b8zHUQ4Cqn" target="_blank">
-        <button>Discord</button></a
-      >
+        <a href="../Docs"><button>Docs</button></a>
 
-      <a href="../Docs"><button>Docs</button></a>
-
-      <button id="Export">Export</button>
-      <button id="Save">Save</button>
-      <input type="file" id="fileInput" accept=".pb" style="display: none" />
-      <button id="Load">Load</button>
-      <input
-        type="text"
-        id="ExtensionName"
-        placeholder="ExtensionName"
-        maxlength="20"
-      />
-      <input
-        class="no"
-        type="text"
-        id="ExtensionID"
-        placeholder="ExtensionID"
-        maxlength="20"
-      />
-      <input type="color" id="Color" value="#0088ff" />
-      <label
-        >Force Unsandboxed <input type="checkbox" id="force-unsandboxed"
-      /></label>
+        <button id="Export">Export</button>
+        <button id="Save">Save</button>
+        <input type="file" id="fileInput" accept=".pb" style="display: none" />
+        <button id="Load">Load</button>
+        <input
+          type="text"
+          id="ExtensionName"
+          placeholder="ExtensionName"
+          maxlength="20"
+        />
+        <input
+          class="no"
+          type="text"
+          id="ExtensionID"
+          placeholder="ExtensionID"
+          maxlength="20"
+        />
+        <input type="color" id="Color" value="#0088ff" />
+        <label
+          >Force Unsandboxed <input type="checkbox" id="force-unsandboxed"
+        /></label>
+      </div>
       <div id="version"></div>
     </main>
 
