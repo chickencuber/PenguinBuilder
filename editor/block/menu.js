@@ -109,7 +109,7 @@ Blockly.Blocks['create_dynamic_menu'] = {
       .appendField(new Blockly.FieldTextInput("ID"), "ID");
     this.appendDummyInput()
       .appendField("Accept Reporters")
-      .appendField(new Blockly.FieldCheckbox("TRUE"), "NAME");
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "Accept");
     this.appendStatementInput("Function")
       .setCheck(null)
       .appendField("Function");
