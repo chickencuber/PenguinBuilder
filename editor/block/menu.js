@@ -124,11 +124,11 @@ javascript.javascriptGenerator.forBlock['create_dynamic_menu'] = function (block
   const reporters = block.getFieldValue('Accept') === 'TRUE';
   const func = generator.statementToCode(block, 'Function');
   const code = `
-  menus["${Extension_id}_customMenu_dynamic_${ID}"] = {
+  menus["${Extension_id}_customMenu_${ID}"] = {
     acceptReporters: ${reporters},
-    items: "${Extension_id}_customMenu_dynamic_${ID}_func",
+    items: "${Extension_id}_customMenu_${ID}_func",
   };
-  Extension.prototype["${Extension_id}_customMenu_dynamic_${ID}_func"] = function() {
+  Extension.prototype["${Extension_id}_customMenu_${ID}_func"] = function() {
     const localVars = {};
     ${func}
   };
