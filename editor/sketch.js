@@ -1,7 +1,7 @@
-const version = "3.2";
+const version = "3.3";
 
 const whats_new = `
-Added category ordering and buttons
+Changed the system for pb files
 `;
 
 class Search extends JSQuery.Plugin {
@@ -470,9 +470,9 @@ function saveProject(saveName) {
     return;
   }
   getID();
-  const blocks = Blockly.serialization.workspaces.save(workspace);
+  const blocks = encode(JSON.stringify(Blockly.serialization.workspaces.save(workspace)));
   download(
-    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed, extensions }),
+    JSON.stringify({ color1, name, Extension_id, blocks, forceUnsandboxed, extensions, newdata: true }),
     saveName + ".pb"
   );
 }
@@ -484,7 +484,10 @@ function loadProject(file) {
     try {
       const content = e.target.result;
       const blocks = JSON.parse(content);
-
+      if(blocks.newdata) {
+        const decoded = decode(blocks.blocks);
+        blocks.blocks = JSON.parse(decoded);
+      }
       $("#ExtensionID").elt.value = blocks.Extension_id === "ExtensionID" ? "" : blocks.Extension_id;
       $("#ExtensionName").elt.value = blocks.name === "ExtensionName" ? "" : blocks.name;
       $("#Color").value(blocks.color1);
