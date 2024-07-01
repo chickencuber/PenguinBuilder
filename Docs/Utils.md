@@ -29,3 +29,12 @@ doesn't actually do anything
 ### Arguments
 * value
 ___
+## wait
+stops the block for the length of the inputed time(millis)
+### Arguments
+* millis: time it waits until
+___
+## wait until
+stops until a boolean value is met
+### Arguments
+* value: the boolean it waits until

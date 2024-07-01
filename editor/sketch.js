@@ -424,17 +424,6 @@ $("#Export").click(() => {
   return new Promise((r) => setTimeout(() => r(), m));
 }
 
-function wait_until(func) {
-  return new Promise((r) => {
-    const c = setInterval(() => {
-      if (func()) {
-        r();
-        clearInterval(c);
-      }
-    }, 10);
-  });
-}
-
   ${forceUnsandboxed ? `if (!Scratch.extensions.unsandboxed) {
     throw new Error('${name} must run unsandboxed');
   }`: ""}
