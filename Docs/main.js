@@ -51,6 +51,7 @@ $.all(".category").click(function () {
         "Variables",
         "creatingextensions",
         "postingextensions"]) {
+            console.log("./" + f + ".md?cache=" + Date.now())
         const contents = await fetch("./" + f + ".md?cache=" + Date.now());
         markdownContent[f] = await contents.text();
     }
