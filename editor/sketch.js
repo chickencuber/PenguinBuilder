@@ -1,7 +1,7 @@
-const version = "3.3";
+const version = "3.4";
 
 const whats_new = `
-Changed the system for pb files
+added wait and wait until
 `;
 
 class Search extends JSQuery.Plugin {
@@ -202,6 +202,8 @@ const toolbox = {
         block("random_bool"),
         block("comment_one"),
         block("comment_multi"),
+        block("wait"),
+        block("wait_until"),
       ],
     },
     {
@@ -402,6 +404,7 @@ let very_end = "";
 
 $("#Export").click(() => {
   end = "";
+  very_end = "";
   menus = 0;
   getID();
   if (
@@ -416,6 +419,21 @@ $("#Export").click(() => {
   const blocks = [];
   const vars = {};
   const menus = {};
+
+  function wait(m) {
+  return new Promise((r) => setTimeout(() => r(), m));
+}
+
+function wait_until(func) {
+  return new Promise((r) => {
+    const c = setInterval(() => {
+      if (func()) {
+        r();
+        clearInterval(c);
+      }
+    }, 10);
+  });
+}
 
   ${forceUnsandboxed ? `if (!Scratch.extensions.unsandboxed) {
     throw new Error('${name} must run unsandboxed');

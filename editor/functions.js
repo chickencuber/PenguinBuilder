@@ -14,7 +14,7 @@ Blockly.Blocks['function_value'] = {
 
 javascript.javascriptGenerator.forBlock['function_value'] = function (block, generator) {
     const body = generator.statementToCode(block, 'body');
-    const code = `((args = {}) => {
+    const code = `(async (args = {}) => {
         const localVars = {};
         ${body}
     })`
@@ -35,7 +35,7 @@ Blockly.Blocks['run_function_return'] = {
 
 javascript.javascriptGenerator.forBlock['run_function_return'] = function (block, generator) {
     const func = generator.valueToCode(block, 'function', Blockly.JavaScript.ORDER_NONE);
-    const code = `(${func}())`;
+    const code = `(await ${func}())`;
     return [code, Blockly.javascript.ORDER_NONE];
 };
 
@@ -54,7 +54,7 @@ Blockly.Blocks['run_function_no_return'] = {
 
 javascript.javascriptGenerator.forBlock['run_function_no_return'] = function (block, generator) {
     const func = generator.valueToCode(block, 'function', Blockly.JavaScript.ORDER_NONE);
-    const code = `(${func}());\n`;
+    const code = `(await ${func}());\n`;
     return code;
 };
 
@@ -76,7 +76,7 @@ Blockly.Blocks['run_function_return_args'] = {
 javascript.javascriptGenerator.forBlock['run_function_return_args'] = function (block, generator) {
     const func = generator.valueToCode(block, 'function', Blockly.JavaScript.ORDER_NONE);
     const args = generator.valueToCode(block, 'args', Blockly.JavaScript.ORDER_NONE);
-    const code = `(${func}(${args}))`;
+    const code = `(await ${func}(${args}))`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -99,7 +99,7 @@ Blockly.Blocks['run_function_no_return_args'] = {
 javascript.javascriptGenerator.forBlock['run_function_no_return_args'] = function (block, generator) {
     const func = generator.valueToCode(block, 'function', Blockly.JavaScript.ORDER_NONE);
     const args = generator.valueToCode(block, 'args', Blockly.JavaScript.ORDER_NONE);
-    const code = `(${func}(${args}));`;
+    const code = `(await ${func}(${args}));`;
     return code;
 };
 

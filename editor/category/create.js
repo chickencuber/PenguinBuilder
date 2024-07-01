@@ -54,7 +54,7 @@ javascript.javascriptGenerator.forBlock['create_button'] = function (block, gene
         blockType: Scratch.BlockType.BUTTON,
         text: "${text}",
       });
-      Extension.prototype["${id}"] = function(util) {
+      Extension.prototype["${id}"] = async function(util) {
         const localVars = {};
         ${on_click}
       };`

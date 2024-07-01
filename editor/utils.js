@@ -167,10 +167,10 @@ javascript.javascriptGenerator.forBlock["inline_function_a"] = function (
   generator
 ) {
   const statement = generator.statementToCode(block, "statement");
-  const code = `(() => {
+  const code = `(await (async () => {
 const localVars = {};
 ${statement}
-})();\n`;
+})());\n`;
   return code;
 };
 
@@ -191,10 +191,10 @@ javascript.javascriptGenerator.forBlock["inline_function_b"] = function (
   generator
 ) {
   const statement = generator.statementToCode(block, "statement");
-  const code = `(() => {
+  const code = `(await (async () => {
 const localVars = {};
 ${statement}
-})();\n`;
+})());\n`;
   return code;
 };
 
@@ -214,9 +214,47 @@ javascript.javascriptGenerator.forBlock["inline_function_c"] = function (
   generator
 ) {
   const statement = generator.statementToCode(block, "statement");
-  const code = `(() => {
+  const code = `(await (async () => {
 const localVars = {};
 ${statement}
-})()`;
+})())`;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.Blocks['wait'] = {
+  init: function() {
+    this.appendValueInput("millis")
+        .setCheck("Number")
+        .appendField("wait");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['wait'] = function(block, generator) {
+  const millis = generator.valueToCode(block, 'millis', javascript.Order.ATOMIC);
+  const code = `await wait(${millis});\n`;
+  return code;
+};
+
+Blockly.Blocks['wait_until'] = {
+  init: function() {
+    this.appendValueInput("bool")
+        .setCheck("Boolean")
+        .appendField("wait until");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['wait_until'] = function(block, generator) {
+  const bool = generator.valueToCode(block, 'bool', javascript.Order.ATOMIC);
+  const code = `await wait_until(${bool});\n`;
+  return code;
 };

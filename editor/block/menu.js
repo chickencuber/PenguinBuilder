@@ -128,7 +128,7 @@ javascript.javascriptGenerator.forBlock['create_dynamic_menu'] = function (block
     acceptReporters: ${reporters},
     items: "${Extension_id}_customMenu_${ID}_func",
   };
-  Extension.prototype["${Extension_id}_customMenu_${ID}_func"] = function() {
+  Extension.prototype["${Extension_id}_customMenu_${ID}_func"] = async function() {
     const localVars = {};
     ${func}
   };

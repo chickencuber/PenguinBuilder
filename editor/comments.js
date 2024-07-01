@@ -5,7 +5,7 @@ Blockly.Blocks['comment_one'] = {
         .appendField("//");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(180);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -25,7 +25,7 @@ Blockly.Blocks['comment_multi'] = {
         .appendField("*/");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(180);
  this.setTooltip("");
  this.setHelpUrl("");
   }

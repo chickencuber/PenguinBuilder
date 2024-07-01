@@ -67,7 +67,7 @@ blocks.push({
   },
   disableMonitor: ${!show}
 });
-Extension.prototype["${id}"] = function(args, util) {
+Extension.prototype["${id}"] = async function(args, util) {
   const localVars = {};
   ${func}
 };
