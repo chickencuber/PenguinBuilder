@@ -255,13 +255,13 @@ Blockly.Blocks['wait_until'] = {
 
 javascript.javascriptGenerator.forBlock['wait_until'] = function(block, generator) {
   const bool = generator.valueToCode(block, 'bool', javascript.Order.ATOMIC);
-  const code = `await new Promise(resolve => {
-        let x = setInterval(() => {
+  const code = `await new Promise(r => {
+        let i = setInterval(() => {
             if (${bool}) {
-                clearInterval(x);
-                resolve()
+                clearInterval(i);
+                r()
             }
         }, 50)
-    })`;
+    });`;
   return code;
 };
