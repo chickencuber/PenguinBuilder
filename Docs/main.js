@@ -34,6 +34,7 @@ $.all(".category").click(function () {
 
     const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
     const elt = $(id);
+    console.log(id)
     elt.elt.scrollIntoView({ behavior: 'smooth' });
     $("#categories").children.removeClass("selected");
     $.from(this).class("selected");
@@ -51,7 +52,6 @@ $.all(".category").click(function () {
         "Variables",
         "creatingextensions",
         "postingextensions"]) {
-            console.log("./" + f + ".md?cache=" + Date.now())
         const contents = await fetch("./" + f + ".md?cache=" + Date.now());
         markdownContent[f] = await contents.text();
     }
