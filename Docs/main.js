@@ -42,6 +42,7 @@ $.all(".category").click(function () {
 (async () => {
     const markdownContent = {};
     for (const f of ["Block",
+        "Category",
         "Utils",
         "Extra_Functions",
         "Alert",

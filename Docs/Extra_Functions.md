@@ -1,4 +1,4 @@
-# Extra Functions
+# Functions+
 ## inline function(there are 3 of these)
 creates a function and then automatically runs the code in it
 ### Arguments

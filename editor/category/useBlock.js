@@ -1,7 +1,7 @@
 Blockly.Blocks['use_block'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("use_block id:")
+            .appendField("use block id:")
             .appendField(new Blockly.FieldTextInput("id"), "id");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -20,7 +20,7 @@ javascript.javascriptGenerator.forBlock['use_block'] = function (block, generato
 Blockly.Blocks['use_hat'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("use_hat id:")
+            .appendField("use hat id:")
             .appendField(new Blockly.FieldTextInput("id"), "id");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
