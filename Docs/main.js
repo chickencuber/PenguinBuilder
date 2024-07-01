@@ -32,9 +32,8 @@ $.all(".category").click(function () {
         { once: true }
     );
 
-    const id = "#" + $.from(this).text().replaceAll(/[+ \n\t]/g, "");
+    const id = "#" + $.from(this).id().slice(7);
     const elt = $(id);
-    console.log(id)
     elt.elt.scrollIntoView({ behavior: 'smooth' });
     $("#categories").children.removeClass("selected");
     $.from(this).class("selected");
