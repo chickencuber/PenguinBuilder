@@ -26,9 +26,13 @@ button:hover:not(.option) {
   color: black;
   border-color: black;
   width: 150px;
+  min-width: 150px;
+  max-width: 150px;
   height: 200px;
+  min-height: 200px;
+  max-height: 200px;
   font-size: large;
-  margin: 5%;
+  margin: 50px;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -45,6 +49,8 @@ main {
   justify-content: center;
   background: white;
   position: absolute;
+  flex-wrap: wrap;
+  overflow-y: scroll;
   top: 20px;
   left: 20px;
   width: calc(100vw - 40px);
