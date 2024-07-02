@@ -33,7 +33,7 @@ const data = {};
             }
             return obj;
         })(await (await fetch(ext.url)).json());
-        const image = contents["image.png"] ? await (await fetch(contents["image.png"].download_url + "?cache=" + Date.now())).blob() : "./default.png";
+        const image = contents["image.png"] ? contents["image.png"].download_url + "?cache=" + Date.now() : "./default.png";
         data[ext.name] = {
             image,
             options: await (await fetch(contents["options.json"].download_url + "?cache=" + Date.now())).json(),
