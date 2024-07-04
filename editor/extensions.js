@@ -108,13 +108,13 @@ const Penguin = {
             return this.BlocklyBlock.getFieldValue(ID) + "";
         }
         getValue(ID) {
-            return this.BlocklyGenerator.valueToCode(this.BlocklyBlock, ID, javascript.Order.ATOMIC) + "";
+            return this.BlocklyGenerator?.valueToCode(this.BlocklyBlock, ID, javascript.Order.ATOMIC) + "";
         }
         getStatement(ID) {
-            return this.BlocklyGenerator.statementToCode(this.BlocklyBlock, ID) + "";
+            return this.BlocklyGenerator?.statementToCode(this.BlocklyBlock, ID) + "";
         }
         get parent() {
-            return this.BlocklyBlock.parentBlock_;
+            return new Penguin.Block(this.BlocklyBlock.parentBlock_, undefined);
         }
         get top() {
             if (this.parent === null) {
