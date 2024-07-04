@@ -369,6 +369,9 @@ let extensionWindow;
 
 workspace.registerButtonCallback("Load_Extension", () => {
   extensionWindow = window.open("./extensionGallery" + location.search, "", "popup");
+  window.onbeforeunload  = function() {
+    extensionWindow.close();
+  };
 });
 
 let extensions = {};
