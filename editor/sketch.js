@@ -368,7 +368,7 @@ workspace.addChangeListener(Blockly.Events.disableOrphans);
 let extensionWindow;
 
 workspace.registerButtonCallback("Load_Extension", () => {
-  extensionWindow = window.open("./extensionGallery", "", "popup");
+  extensionWindow = window.open("./extensionGallery" + location.search, "", "popup");
 });
 
 let extensions = {};

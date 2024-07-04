@@ -40,6 +40,10 @@ const data = {};
             options: await (await fetch(contents["options.json"].download_url + "?cache=" + Date.now())).json(),
             javascript: await (await fetch(contents["index.js"].download_url + "?cache=" + Date.now())).text(),
         }
+        if(data[ext.name].options.WIP && !((new URLSearchParams(location.search)).has("WIP"))) {
+            delete data[ext.name];
+            continue;
+        }
         if (data[ext.name].options.loader) {
             data[ext.name].code = new Function(data[ext.name].javascript);
         }

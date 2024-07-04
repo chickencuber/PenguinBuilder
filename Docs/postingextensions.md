@@ -30,3 +30,4 @@ options for the file
 * display-name: the name that the extension shows
 * description: the description of the extension
 * loader: an optional boolean showing weather the extension is a loader
+* WIP: if set to true, your extension will be hidden in the extension menu, unless they add "?WIP" to the end of the url
