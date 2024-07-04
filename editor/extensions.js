@@ -114,6 +114,8 @@ const Penguin = {
             return this.BlocklyGenerator?.statementToCode(this.BlocklyBlock, ID) + "";
         }
         get parent() {
+            if (this.BlocklyBlock.parentBlock_ === null)
+                return null;
             return new Penguin.Block(this.BlocklyBlock.parentBlock_, undefined);
         }
         get top() {
