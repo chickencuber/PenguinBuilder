@@ -40,7 +40,8 @@ const data = {};
             options: await (await fetch(contents["options.json"].download_url + "?cache=" + Date.now())).json(),
             javascript: await (await fetch(contents["index.js"].download_url + "?cache=" + Date.now())).text(),
         }
-        if(data[ext.name].options.WIP && !((new URLSearchParams(location.search)).has("WIP"))) {
+        const params = new URLSearchParams(location.search);
+        if(data[ext.name].options.WIP && !(params.has("WIP") || params.has("wip"))) {
             delete data[ext.name];
             continue;
         }
