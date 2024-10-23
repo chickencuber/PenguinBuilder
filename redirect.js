@@ -1,2 +1,3 @@
 "use strict";
-document.querySelector("a")?.click();
+location.replace("./editor" + location.search);
+location.reload();
