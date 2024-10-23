@@ -1,2 +1,2 @@
-location.replace("./editor" + location.search);
+location.href = "./editor" + location.search;
 location.reload();
