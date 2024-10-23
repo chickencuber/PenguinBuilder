@@ -1,2 +1,3 @@
-location.href = "./editor" + location.search;
-location.reload();
+const a = document.createElement("a");
+a.href = "./editor" + location.search;
+a.click();
