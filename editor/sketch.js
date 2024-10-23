@@ -369,6 +369,7 @@ let extensionWindow;
 
 workspace.registerButtonCallback("Load_Extension", () => {
   extensionWindow = window.open("./extensionGallery/index.html" + location.search, "", "popup");
+    extensionWindow.resizeTo(690, 320)
   window.onbeforeunload  = function() {
     extensionWindow.close();
   };
