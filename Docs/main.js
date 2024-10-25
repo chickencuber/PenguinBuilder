@@ -64,6 +64,7 @@ $.all(".category").click(function () {
         }
     }
 
+    $.all("*").forEach(v => v.class("dark"));
 })()
 
 let last = $("#docs").elt.scrollTop;
