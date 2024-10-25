@@ -91,3 +91,8 @@ button:not(.category) {
 button:hover:not(.category) {
   background: #62D8FC;
 }
+
+a.dark {
+    color: #0087ff;
+}
+
