@@ -1,3 +1,4 @@
+let dark = false;
 class Rect extends JSQuery.Plugin {
     Element() {
         return {
@@ -64,7 +65,7 @@ $.all(".category").click(function () {
         }
     }
 
-    $.all("*").forEach(v => v.class("dark"));
+    if (dark) $.all("*").forEach(v => v.class("dark"));
 })()
 
 let last = $("#docs").elt.scrollTop;
@@ -91,5 +92,6 @@ if (localStorage.getItem("PenguinBuilder") === null) {
 }
 
 if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
+    dark = true;
     $.all("*").forEach(v => v.class("dark"));
 }
