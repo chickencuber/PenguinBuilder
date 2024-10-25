@@ -81,3 +81,14 @@ $("#docs").on("scroll", (e) => {
     }
     last = scroll;
 });
+
+if (localStorage.getItem("PenguinBuilder") === null) {
+    localStorage.setItem("PenguinBuilder", JSON.stringify({
+        shown_version: "0",
+        dark: false,
+    }))
+}
+
+if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
+    $.all("*").forEach(v => v.class("dark"));
+}

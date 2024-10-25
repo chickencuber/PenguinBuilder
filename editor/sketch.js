@@ -1,7 +1,7 @@
-const version = "3.4";
+const version = "3.5";
 
 const whats_new = `
-added wait and wait until
+added dark mode
 `;
 
 class Search extends JSQuery.Plugin {
@@ -53,23 +53,6 @@ class Templates extends JSQuery.Plugin {
 
 $.loadPlugin(Templates, true);
 
-
-if (localStorage.getItem("PenguinBuilder") === null) {
-    localStorage.setItem("PenguinBuilder", JSON.stringify({
-        shown_version: "0",
-    }))
-}
-
-if (JSON.parse(localStorage.getItem("PenguinBuilder")).shown_version !== version) {
-    const update = $("#whats-new").create();
-    update.$(".update").text(whats_new);
-    update.$(".close").click(() => update.remove());
-    $.body().child(update);
-    update.$(".whats-new-dialog").elt.showModal();
-    localStorage.setItem("PenguinBuilder", JSON.stringify({
-        shown_version: version,
-    }))
-}
 
 $("#version").text("v" + version);
 
@@ -348,7 +331,31 @@ toolbox.contents.push(category("Extensions", "#555", [
     button("Load Extension", "Load_Extension"),
 ]));
 
-Blockly.Themes.Classic.startHats = true;
+toolbox.contents.push({kind: "sep"});
+
+const Hats = Blockly.Theme.defineTheme('hats', {
+    base: Blockly.Themes.Classic,
+    startHats: true,
+});
+
+const Dark = Blockly.Theme.defineTheme('dark', {
+    base: Hats,
+    componentStyles: {
+        workspaceBackgroundColour: '#1e1e1e',
+        toolboxBackgroundColour: 'blackBackground',
+        toolboxForegroundColour: '#fff',
+        flyoutBackgroundColour: '#252526',
+        flyoutForegroundColour: '#ccc',
+        flyoutOpacity: 1,
+        scrollbarColour: '#797979',
+        insertionMarkerColour: '#fff',
+        insertionMarkerOpacity: 0.3,
+        scrollbarOpacity: 0.4,
+        cursorColour: '#d0d0d0',
+        blackBackground: '#333',
+    },
+    startHats: true,
+});
 
 const workspace = Blockly.inject("block-editor", {
     plugins: {
@@ -358,8 +365,23 @@ const workspace = Blockly.inject("block-editor", {
     },
     renderer: "zelos",
     toolbox,
+    theme: Hats,
 });
 
+$("#darkmode").click(() => {
+    const self = $("#darkmode");
+    self.toggleClass("dark");
+    $(".blocklyTreeSeparator").toggleClass("dark");
+    localStorage.setItem("PenguinBuilder", JSON.stringify({
+        shown_version: version,
+        dark: self.hasClass("dark"),
+    }));  
+    if(self.hasClass("dark")) {
+        workspace.setTheme(Dark);
+    } else {
+        workspace.setTheme(Hats);
+    }
+});
 
 workspace.scale = 0.7;
 
@@ -562,3 +584,27 @@ function checkFileExtension(file, allowedExtension) {
     const fileExtension = fileNameParts.at(-1).toLowerCase();
     return fileExtension === allowedExtension.substring(1);
 }
+
+if (localStorage.getItem("PenguinBuilder") === null) {
+    localStorage.setItem("PenguinBuilder", JSON.stringify({
+        shown_version: "0",
+        dark: false,
+    }))
+}
+
+if (JSON.parse(localStorage.getItem("PenguinBuilder")).shown_version !== version) {
+    const update = $("#whats-new").create();
+    update.$(".update").text(whats_new);
+    update.$(".close").click(() => update.remove());
+    $.body().child(update);
+    update.$(".whats-new-dialog").elt.showModal();
+    localStorage.setItem("PenguinBuilder", JSON.stringify({
+        shown_version: version,
+        dark: JSON.parse(localStorage.getItem("PenguinBuilder")).dark,
+    }))
+}
+
+if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
+    $("#darkmode").click();
+}
+

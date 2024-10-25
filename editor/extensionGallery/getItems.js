@@ -1,5 +1,7 @@
+let dark = false;
+
 function createOption(data) {
-    return $.create("button").child([$.create("img").css({
+    const temp = $.create("button").child([$.create("img").css({
         width: "65%",
         height: "45%"
     }).props({ src: data.image }), $.create("div").text(data.options["display-name"]),
@@ -10,6 +12,8 @@ function createOption(data) {
         "font-size": "10px",
     })
     ]).class("option");
+    if(dark) temp.class("dark");
+    return temp;
 }
 
 const data = {};
@@ -76,3 +80,16 @@ function postData(key, value) {
     }
     opener.postMessage({ type: "extension", data: { code: value.javascript, id: key } }, "*");
 }
+
+if (localStorage.getItem("PenguinBuilder") === null) {
+    localStorage.setItem("PenguinBuilder", JSON.stringify({
+        shown_version: "0",
+        dark: false,
+    }))
+}
+
+if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
+    $.all("*").forEach(v => v.class("dark"));
+    dark = true;
+}
+

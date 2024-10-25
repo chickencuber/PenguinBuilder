@@ -16,6 +16,10 @@ main {
   left: 20px;
 }
 
+main.dark{
+    background: rgb(51, 51, 51);
+}
+
 #docs {
   flex: 1;
   overflow-y: scroll;
@@ -38,6 +42,26 @@ main {
   background: #cccccc;
 }
 
+.category.dark {
+    background: rgb(51, 51, 51);
+}
+
+.category:hover.dark {
+    background: rgb(128, 128, 128);
+}
+
+.category.selected.dark {
+    background: rgb(128, 128, 128);
+}
+
+* {
+    font-family: "Lexend", sans-serif; 
+}
+
+*.dark {
+    color: white
+}
+
 .circle {
   border-radius: 100px;
   -webkit-border-radius: 100px;
@@ -46,7 +70,14 @@ main {
   -o-border-radius: 100px;
   width: 30px;
   height: 30px;
+  border-width: 1px;
+  border: solid black;
   margin-right: 10px;
+}
+
+.circle.dark {
+    border: solid #fff;
+    border-width: 1px;
 }
 
 button:not(.category) {
