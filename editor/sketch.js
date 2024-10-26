@@ -1,7 +1,7 @@
-const version = "3.5";
+const version = "3.6";
 
 const whats_new = `
-added dark mode
+added more blocks, and colors are back
 `;
 
 class Search extends JSQuery.Plugin {
@@ -178,7 +178,6 @@ const toolbox = {
             name: "utils",
             colour: "#00E5FF",
             contents: [
-                block("newline"),
                 block("to_any"),
                 block("equals_exactly"),
                 block("not_equals_exactly"),
@@ -302,6 +301,10 @@ addCategory("texts", "#00ff00", "string", [
     "text_create_join_item",
 ]);
 
+const strings = toolbox.contents.at(-1).contents;
+strings.push(block("newline"));
+strings.unshift(block("text_multiline"));
+
 addCategory("math", "#0000ff", "math", []);
 
 addCategory("lists", "#ff0000", "arrays", [
@@ -325,7 +328,7 @@ let if_block;
 addFromPrefix("logic_", "logic", "#002CB9", []);
 toolbox.contents.at(-1).contents.push(if_block);
 
-//addCategory("colour", "", "color");
+addFromPrefix("colour_", "color", "#FF00E8");
 
 toolbox.contents.push(category("Extensions", "#555", [
     button("Load Extension", "Load_Extension"),
