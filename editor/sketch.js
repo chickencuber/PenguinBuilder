@@ -446,7 +446,7 @@ $("#Export").click(() => {
             `
             // Made with PenguinBuilder ${version}
             // use PenguinBuilder at "https://chickencuber.github.io/PenguinBuilder/"
-            (function(Scratch) {
+            (async function(Scratch) {
                 const blocks = [];
                 const vars = {};
                 const menus = {};

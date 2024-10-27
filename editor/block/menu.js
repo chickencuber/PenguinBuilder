@@ -107,9 +107,6 @@ Blockly.Blocks['create_dynamic_menu'] = {
     this.appendDummyInput()
       .appendField("ID")
       .appendField(new Blockly.FieldTextInput("ID"), "ID");
-    this.appendDummyInput()
-      .appendField("Accept Reporters")
-      .appendField(new Blockly.FieldCheckbox("TRUE"), "Accept");
     this.appendStatementInput("Function")
       .setCheck(null)
       .appendField("Function");
@@ -121,7 +118,7 @@ Blockly.Blocks['create_dynamic_menu'] = {
 
 javascript.javascriptGenerator.forBlock['create_dynamic_menu'] = function (block, generator) {
   const ID = block.getFieldValue('ID');
-  const reporters = block.getFieldValue('Accept') === 'TRUE';
+  const reporters = true;
   const func = generator.statementToCode(block, 'Function');
   const code = `
   menus["${Extension_id}_customMenu_${ID}"] = {
