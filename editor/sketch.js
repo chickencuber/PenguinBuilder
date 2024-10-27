@@ -184,8 +184,6 @@ const toolbox = {
                 block("random_bool"),
                 block("comment_one"),
                 block("comment_multi"),
-                block("wait"),
-                block("wait_until"),
             ],
         },
         {
@@ -307,6 +305,9 @@ strings.unshift(block("text_multiline"));
 
 addCategory("math", "#0000ff", "math", []);
 
+toolbox.contents.at(-1).contents.unshift(block("math_angle"));
+toolbox.contents.at(-1).contents.push(block("math_convert_degrees"));
+
 addCategory("lists", "#ff0000", "arrays", [
     "lists_create_with_container",
     "lists_create_with_item",
@@ -322,7 +323,8 @@ addFromPrefix("controls_", "controls", "#FFCC00", [
 let if_block;
 (() => {
     const last = toolbox.contents.at(-1);
-    if_block = last.contents.pop();
+    if_block = last.contents.at(-4);
+    last.contents.splice(-4, 1);
 })();
 
 addFromPrefix("logic_", "logic", "#002CB9", []);
