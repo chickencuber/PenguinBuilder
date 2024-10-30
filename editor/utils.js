@@ -270,6 +270,14 @@ textMultiline.installBlock({
     javascript: javascript.javascriptGenerator,
 });
 
+javascript.javascriptGenerator.forBlock["text_multiline"] = function(
+    block,
+    generator,
+) {
+    const code = generator.multiline_quote_(block.getFieldValue('TEXT'));
+    return [code, Blockly.JavaScript.ORDER_ATOMIC]
+}
+
 installAllBlocks({
     javascript: javascript.javascriptGenerator,
 });
