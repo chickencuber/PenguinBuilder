@@ -11,8 +11,8 @@ main {
   background: white;
   position: absolute;
   width: calc(100vw - 40px);
-  height: calc(100vh - 20px);
-  bottom: 0px;
+  height: calc(100vh - 40px);
+  bottom: 20px;
   left: 20px;
 }
 
