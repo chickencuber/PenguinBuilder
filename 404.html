@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="./favicon.ico">
+        <script src="https://chickencuber.github.io/client-side-routing/router.js"></script>
+        <title>PenguinBuilder-404</title>
+    </head>
+    <body>
+        <script>
+            Router.options.ignoreSegment = 1;
+            Router.route("/user", () => {
+                return "<div>under construction</div>"
+            }, (route) => {
+                route.route("/:user", "_404");
+            }).start();
+        </script>
+    </body>
+</html>

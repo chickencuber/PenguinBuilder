@@ -4,6 +4,13 @@ const whats_new = `
 added more blocks, and colors are back
 `;
 
+$("html").on("keydown", (e) => {
+    if(e.ctrlKey && e.key == "s") {
+        $("#Save").click();
+        e.preventDefault();
+    }
+})
+
 class Search extends JSQuery.Plugin {
     Element() {
         return {
