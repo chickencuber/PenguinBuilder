@@ -10,6 +10,10 @@
             Router.options.ignoreSegment = 1;
             Router.route("/user/:user", () => {
                 return "<div>under construction</div>"
+            }, (Router) => {
+                Router.route("/projects/:projects", () => {
+                    return "<div>under construction</div>"
+                });
             }).start();
         </script>
     </body>
