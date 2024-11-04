@@ -8,10 +8,8 @@
     <body>
         <script>
             Router.options.ignoreSegment = 1;
-            Router.route("/user", () => {
+            Router.route("/user/:user", () => {
                 return "<div>under construction</div>"
-            }, (route) => {
-                route.route("/:user", "_404");
             }).start();
         </script>
     </body>
