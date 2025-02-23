@@ -1,7 +1,7 @@
-const version = "3.6";
+const version = "3.7";
 
 const whats_new = `
-added more blocks, and colors are back
+added test button(opens in turbowarp due to a bug in penguinmod, and only supports sandboxed extensions right now) 
 `;
 
 $("html").on("keydown", (e) => {
@@ -440,17 +440,20 @@ workspaceSearch.init();
 
 let very_end = "";
 
-$("#Export").click(() => {
-    end = "";
-    very_end = "";
-    menus = 0;
-    getID();
-    if (
-        Object.keys(Blockly.serialization.workspaces.save(workspace)).length !== 0
-    ) {
-        workspace.getAllVariables().forEach(v => v.name = Extension_id + "_" + v.name);
-        download(
-            `
+/**
+    * @returns {[boolean, string]}
+    */
+    function getFullCode() {
+        end = "";
+        very_end = "";
+        menus = 0;
+        getID();
+        if (
+            Object.keys(Blockly.serialization.workspaces.save(workspace)).length !== 0
+        ) {
+            workspace.getAllVariables().forEach(v => v.name = Extension_id + "_" + v.name);
+            const str = 
+                `
             // Made with PenguinBuilder ${version}
             // use PenguinBuilder at "https://chickencuber.github.io/PenguinBuilder/"
             (async function(Scratch) {
@@ -484,10 +487,27 @@ $("#Export").click(() => {
                 ${very_end}
                 Scratch.extensions.register(new Extension());
             })(Scratch);
-            `,
-            Extension_id + ".js"
-        );
-        workspace.getAllVariables().forEach(v => v.name = v.name.replace(new RegExp("^" + Extension_id + "_", "g"), ""));
+            `;
+            workspace.getAllVariables().forEach(v => v.name = v.name.replace(new RegExp("^" + Extension_id + "_", "g"), ""));
+            return [true, str];
+        }
+        return [false, ""];
+    }
+
+$("#Test").click(() => {
+    const [exists, str] = getFullCode();
+    if(exists) {
+        const url = encodeURI("data:application/javascript;base64," + btoa(str));
+        //window.open("https://studio.penguinmod.com/editor.html?extension=" + url)
+        //!Do to a bug with penguinmod, I have to use turbowarp
+        window.open("https://turbowarp.org/editor?extension=" + url); 
+    }
+});
+
+$("#Export").click(() => {
+    const [exists, str] = getFullCode();
+    if(exists) {
+        download(str, Extension_id + ".js")
     }
 });
 
@@ -606,7 +626,7 @@ if (localStorage.getItem("PenguinBuilder") === null) {
 
 if (JSON.parse(localStorage.getItem("PenguinBuilder")).shown_version !== version) {
     const update = $("#whats-new").create();
-    update.$(".update").text(whats_new);
+    update.$(".update").text(whats_new.trim());
     update.$(".close").click(() => update.remove());
     $.body().child(update);
     update.$(".whats-new-dialog").elt.showModal();
