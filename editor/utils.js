@@ -8,6 +8,8 @@ Blockly.Blocks["newline"] = {
     },
 };
 
+var Order = javascript.Order
+
 javascript.javascriptGenerator.forBlock["newline"] = function (
     block,
     generator
