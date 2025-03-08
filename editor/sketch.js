@@ -11,8 +11,8 @@ $("html").on("keydown", (e) => {
     }
 });
 
-installColourBlocks({
-  javascript: javascriptGenerator,
+installAllBlocks({
+  javascript: javascript.javascriptGenerator,
 });
 
 class Search extends JSQuery.Plugin {
