@@ -9,7 +9,11 @@ $("html").on("keydown", (e) => {
         $("#Save").click();
         e.preventDefault();
     }
-})
+});
+
+installColourBlocks({
+  javascript: javascriptGenerator,
+});
 
 class Search extends JSQuery.Plugin {
     Element() {
