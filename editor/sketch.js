@@ -11,10 +11,6 @@ $("html").on("keydown", (e) => {
     }
 });
 
-installAllBlocks({
-  javascript: javascript.javascriptGenerator,
-});
-
 class Search extends JSQuery.Plugin {
     Element() {
         return {

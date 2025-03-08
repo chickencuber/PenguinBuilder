@@ -278,28 +278,6 @@ javascript.javascriptGenerator.forBlock["text_multiline"] = function(
     return [code, Blockly.JavaScript.ORDER_ATOMIC]
 }
 
-installAllBlocks({
-    javascript: javascript.javascriptGenerator,
-});
-
-Blockly.Blocks['colour_hsv_sliders'] = {
-    init: function () {
-        this.appendDummyInput()
-            .appendField('hsv ')
-            .appendField(new FieldColourHsvSliders('#ff0000'), 'COLOUR');
-        this.setOutput(true, 'Colour');
-        this.setStyle('colour_blocks');
-    },
-};
-
-javascript.javascriptGenerator.forBlock['colour_hsv_sliders'] = function (
-    block,
-    generator,
-) {
-    const code = generator.quote_(block.getFieldValue('COLOUR'));
-    return [code, Blockly.JavaScript.ORDER_ATOMIC]
-};
-
 registerFieldAngle();
 Blockly.Blocks['math_angle'] = {
     init: function () {
