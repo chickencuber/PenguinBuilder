@@ -74,7 +74,7 @@ $.all(".category").click(function () {
             setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
         }
         if (dark) $.all("*:not(.dark)").forEach(v => v.class("dark"));
-    }, 100)
+    }, 200)
 })()
 
 let last = $("#docs").elt.scrollTop;
