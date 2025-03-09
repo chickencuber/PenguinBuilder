@@ -1,7 +1,7 @@
-const version = "3.7";
+const version = "3.7.1";
 
 const whats_new = `
-added test button(opens in turbowarp due to a bug in penguinmod, and only supports sandboxed extensions right now) 
+added more comment variations
 `;
 
 $("html").on("keydown", (e) => {
