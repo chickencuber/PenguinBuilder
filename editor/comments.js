@@ -52,7 +52,7 @@ Blockly.Blocks['value_comment'] = {
 
 javascript.javascriptGenerator.forBlock['value_comment'] = function(block, generator) {
     const type = generator.valueToCode(block, 'type', javascript.Order.ATOMIC);
-    return [type, Blockly.javascript.ORDER_ATOMIC];
+    return [type, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['bool_comment'] = {
@@ -73,6 +73,6 @@ Blockly.Blocks['bool_comment'] = {
 
 javascript.javascriptGenerator.forBlock['bool_comment'] = function(block, generator) {
     const type = generator.valueToCode(block, 'type', javascript.Order.ATOMIC);
-    return [type, Blockly.javascript.ORDER_ATOMIC];
+    return [type, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
