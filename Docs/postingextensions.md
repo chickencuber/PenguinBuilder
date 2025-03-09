@@ -21,7 +21,7 @@ ___
 
 ## options.json
 
-options for the file
+options for the [file](https://chickencuber.github.io/PenguinBuilder/Docs/#secret)
 
 ### Arguments
 
@@ -31,3 +31,5 @@ options for the file
 * description: the description of the extension
 * loader: an optional boolean showing weather the extension is a loader
 * WIP: if set to true, your extension will be hidden in the extension menu, unless they add "?WIP" to the end of the url
+---
+
