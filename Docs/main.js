@@ -74,7 +74,7 @@ $.all(".category").click(function () {
             setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
         }
         if (dark) $.all("*:not(.dark)").forEach(v => v.class("dark"));
-    }, 200)
+    }, 100)
 })()
 
 let last = $("#docs").elt.scrollTop;
@@ -109,4 +109,8 @@ if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
     dark = true;
     $.all("*").forEach(v => v.class("dark"));
 }
+
+$('a[href="https://chickencuber.github.io/PenguinBuilder/Docs/#secret"]').click(() => {
+    location.reload();
+})
 
