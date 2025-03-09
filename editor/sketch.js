@@ -190,6 +190,8 @@ const toolbox = {
                 block("not_equals_exactly"),
                 block("random_bool"),
                 block("comment_one"),
+                block("value_comment"),
+                block("bool_comment"),
                 block("comment_multi"),
             ],
         },
