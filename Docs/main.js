@@ -74,6 +74,7 @@ $.all(".category").click(function () {
             setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
         }
         $('a[href="https://chickencuber.github.io/PenguinBuilder/Docs/#secret"]').click(() => {
+            location.href = "https://chickencuber.github.io/PenguinBuilder/Docs/#secret";
             location.reload();
         })
         if (dark) $.all("*:not(.dark)").forEach(v => v.class("dark"));
