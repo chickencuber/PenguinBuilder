@@ -110,7 +110,3 @@ if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
     $.all("*").forEach(v => v.class("dark"));
 }
 
-$("#button-secret").click(() => {
-    location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDxvFZjo5PgG0";
-});
-
