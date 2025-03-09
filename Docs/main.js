@@ -19,7 +19,7 @@ let scrolling = false;
 
 $.all(".category").click(function () {
     scrolling = true;
-    const end = (e) => {
+    const end = () => {
         scrolling = false;
         $("#docs").removeEvent(
             "scrollend",
@@ -38,6 +38,7 @@ $.all(".category").click(function () {
     elt.elt.scrollIntoView({ behavior: 'smooth' });
     $("#categories").children.removeClass("selected");
     $.from(this).class("selected");
+    setUrl(location.href.slice(0, -location.hash.length) + id); 
 });
 
 (async () => {
@@ -65,10 +66,22 @@ $.all(".category").click(function () {
         }
     }
 
-    if (dark) $.all("*").forEach(v => v.class("dark"));
+    setTimeout(() => {
+        const h = $("#button-" + location.hash.slice(1));
+        if(h) {
+            h.click();
+        } else {
+            setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
+        }
+        if (dark) $.all("*:not(.dark)").forEach(v => v.class("dark"));
+    }, 100)
 })()
 
 let last = $("#docs").elt.scrollTop;
+
+function setUrl(url) {
+    history.replaceState(null, "", url);
+}
 
 $("#docs").on("scroll", (e) => {
     if (scrolling) return;
@@ -78,6 +91,7 @@ $("#docs").on("scroll", (e) => {
         if ((scroll < last ? rect.bottom : rect.top).within(0, innerHeight)) {
             $("#categories").children.removeClass("selected");
             $(`#button-${v.id()}`).class("selected")
+            setUrl(location.href.slice(0, -location.hash.length) + "#" + v.id());
             break;
         }
     }
@@ -95,3 +109,4 @@ if(JSON.parse(localStorage.getItem("PenguinBuilder")).dark) {
     dark = true;
     $.all("*").forEach(v => v.class("dark"));
 }
+
