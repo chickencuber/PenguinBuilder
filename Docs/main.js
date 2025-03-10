@@ -67,19 +67,23 @@ $.all(".category").click(function () {
     }
 
     setTimeout(() => {
-        const h = $("#button-" + location.hash.slice(1));
-        if(h) {
-            h.click();
-        } else {
-            setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
-        }
-        $('a[href="https://chickencuber.github.io/PenguinBuilder/Docs/#secret"]').click(() => {
-            location.href = "https://chickencuber.github.io/PenguinBuilder/Docs/#secret";
-            location.reload();
-        })
+        hash();
         if (dark) $.all("*:not(.dark)").forEach(v => v.class("dark"));
     }, 100)
 })()
+
+function hash() {
+    const h = $("#button-" + location.hash.slice(1));
+    if(h) {
+        h.click();
+    } else {
+        setUrl(location.href.slice(0, -location.hash.length) + "#Block"); 
+    }
+}
+
+$.from(window).on("hashchange", () => {
+    hash();    
+});
 
 let last = $("#docs").elt.scrollTop;
 
